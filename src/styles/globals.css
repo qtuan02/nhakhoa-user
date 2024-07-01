@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.ts-16{
+	font-size: 16px !important;
+}
+
+.ts-18{
+	font-size: 18px !important;
+}
+
+.ts-20{
+	font-size: 20px !important;
+}

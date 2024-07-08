@@ -4,7 +4,9 @@ import "../styles/globals.css";
 import StyledComponentsRegistry from "@/lib/AntdRegistry";
 import AppHeader from "@/components/layout/AppHeader";
 import AppFooter from "@/components/layout/AppFooter";
-import CLayout from "@/custom_antd/CLayout";
+import { ReduxProvider } from "@/redux/provider";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +22,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <CLayout>
-            <AppHeader />
-            <main className="mt-[64px]">
-              {children}
-            </main>
-            <AppFooter />
-          </CLayout>
+          <ReduxProvider>
+            <div>
+              <AppHeader />
+              <main className="mt-[64px]">
+                {children}
+              </main>
+              <AppFooter />
+            </div>
+            <ToastContainer limit={3} autoClose={500} />
+          </ReduxProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

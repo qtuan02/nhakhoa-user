@@ -1,7 +1,5 @@
 import CCol from "@/custom_antd/CCol";
-import CMenu from "@/custom_antd/CMenu";
 import CRow from "@/custom_antd/CRow";
-import { customItemMenu } from "@/utils/FunctionHelpers";
 import { Footer } from "antd/es/layout/layout";
 import Link from "next/link";
 

@@ -1,62 +1,74 @@
-"use client"
+import { getServices } from "@/apis/serviceApi";
+import CButton from "@/custom_antd/CButton";
 import CModal from "@/custom_antd/CModal";
-import { useState } from "react";
+import CSkeleton from "@/custom_antd/CSkeleton";
+import { IService } from "@/interfaces/IService";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addService, toggleModal } from "@/redux/reducers/appoinmentReducer";
+import { Divider, Image, TableColumnsType } from "antd";
+import { useEffect } from "react";
+import { getColumnSearchProps, TOAST_SUCCESS, TOAST_WARNING } from "@/utils/FunctionUiHelpers";
+import CTable from "@/custom_antd/CTable";
+import CTitle from "@/custom_antd/CTitle";
 
 export default function ModalAppoiment() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const dispatch = useAppDispatch();
+    const service = useAppSelector((state) => state.service);
+    const isOpenModal = useAppSelector((state) => state.appoinment.modal);
 
-    const itemServices = [
+    useEffect(() => {
+        dispatch(getServices());
+    }, [dispatch]);
+
+    const columns: TableColumnsType<IService> = [
         {
-            key: "dm1",
-            label: "Danh mục 1",
-            image: "https://res.cloudinary.com/dxv3nf1jb/image/upload/v1718020749/nguyenkim/uxwj6qayfglhlvixlzmo.jpg",
-            children: [
-                {
-                    key: 1,
-                    label: "Dịch vụ 1",
-                    image: "https://res.cloudinary.com/dxv3nf1jb/image/upload/v1718020753/nguyenkim/zdwlxev8qnllx4v43yba.png",
-                    min: 2000000,
-                    max: 5000000,
-                    unit: "unit"  
-                },
-                {
-                    key: 2,
-                    label: "Dịch vụ 2",
-                    image: "https://res.cloudinary.com/dxv3nf1jb/image/upload/v1718020753/nguyenkim/zdwlxev8qnllx4v43yba.png",
-                    min: 200000,
-                    max: 400000,
-                    unit: "unit"  
-                }
-            ]
+            title: "#",
+            dataIndex: "index",
+            width: 50,
+            key: "index",
         },
         {
-            key: "dm2",
-            label: "Danh mục 2",
-            image: "https://res.cloudinary.com/dxv3nf1jb/image/upload/v1718020749/nguyenkim/uxwj6qayfglhlvixlzmo.jpg",
-            children: [
-                {
-                    key: 3,
-                    label: "Dịch vụ 3",
-                    image: "https://res.cloudinary.com/dxv3nf1jb/image/upload/v1718020753/nguyenkim/zdwlxev8qnllx4v43yba.png",
-                    min: 2000000,
-                    max: 5000000,
-                    unit: "unit"  
-                },
-                {
-                    key: 4,
-                    label: "Dịch vụ 4",
-                    image: "https://res.cloudinary.com/dxv3nf1jb/image/upload/v1718020753/nguyenkim/zdwlxev8qnllx4v43yba.png",
-                    min: 200000,
-                    max: 400000,
-                    unit: "unit"  
-                }
-            ]
+            title: "Ảnh",
+            dataIndex: "image",
+            key: "image",
+            width: 100,
+            render: (image) => (
+                <Image width={40} height={40} src={image} alt="img..." />
+            )
+        },
+        {
+            title: "Tên",
+            dataIndex: "name",
+            key: "name",
+            width: 250,
+            ...getColumnSearchProps('name'),
+        },
+        {
+            title: "Giá/Đơn vị",
+            dataIndex: "min_price",
+            key: "min_price",
+            width: 150,
+            sorter: (a: any, b: any) => a.min_price - b.min_price,
+            render: (min_price, item) => <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(min_price))+"/"+item.unit}</span>
+        },
+        {
+            title: "Thao tác",
+            key: "item",
+            width: 100,
+            render: (item) => <CButton type="primary" size="small" onClick={() => dispatch(addService(item))}>Chọn</CButton>
         }
-    ];
+    ] as TableColumnsType<IService>;
 
     return (
-        <CModal>
-
+        <CModal open={isOpenModal} onCancel={() => dispatch(toggleModal())} footer={null} width={800}>
+            <Divider><CTitle level={4}>Chọn dịch vụ</CTitle></Divider>
+            <CSkeleton loading={service.loading}>
+                <CTable
+                    columns={columns}
+                    dataSource={service.data?.map((item, index) => ({ ...item, index: index + 1, key: item.id }))}
+                    pagination={{ defaultPageSize: 5, showSizeChanger: false }}
+                />
+            </CSkeleton>
         </CModal>
     );
 }

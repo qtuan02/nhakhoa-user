@@ -10,10 +10,7 @@ export const getTimes = createAsyncThunk<IResponse>(
     async () => {
         try{
             const res = await axiosClient.get(URL);
-            return {
-                ...res.data,
-                data: res.data.data.map((time: string) => ({ time }))
-            };
+            return res.data;
         }catch(error: any) {
             throw error?.response?.data;
         }

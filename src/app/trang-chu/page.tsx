@@ -1,7 +1,7 @@
-
+import HomeComponent from "@/components/home/Index";
 
 export default function HomePage() {
     return (
-        <div>trang-chu</div>
+        <HomeComponent />
     );
 }

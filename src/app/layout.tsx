@@ -30,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               </main>
               <AppFooter />
             </div>
-            <ToastContainer limit={3} autoClose={500} />
+            <ToastContainer limit={3} autoClose={1200} />
           </ReduxProvider>
         </StyledComponentsRegistry>
       </body>

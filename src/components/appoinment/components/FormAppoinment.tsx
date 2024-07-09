@@ -47,6 +47,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
         form.setFieldsValue({ date: '', time: '' });
         if (doctorId) {
             dispatch(getDate(doctorId));
+            dispatch(setTime());
         } else {
             dispatch(setDate());
         }

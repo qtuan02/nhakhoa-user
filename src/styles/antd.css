@@ -2,3 +2,32 @@
 .ant-table-cell {
     padding: 8px 8px !important;
 }
+
+.carousel-media {
+    height: 500px !important;
+    object-fit: cover;
+}
+
+.ant-carousel .slick-prev{
+    margin-left: 25px !important;
+}
+
+.ant-carousel .slick-prev::after {
+    width: 30px !important;
+    height: 30px !important;
+    border: 0px solid black !important;
+    border-inline-width: 6px 0 !important;
+    border-block-width: 6px 0 !important;
+}
+
+.ant-carousel .slick-next{
+    margin-right: 25px !important;
+}
+
+.ant-carousel .slick-next::after {
+    width: 30px !important;
+    height: 30px !important;
+    border: 0px solid black !important;
+    border-inline-width: 6px 0 !important;
+    border-block-width: 6px 0 !important;
+}

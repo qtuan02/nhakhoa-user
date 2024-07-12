@@ -60,13 +60,12 @@ export default function ModalAppoiment() {
     ] as TableColumnsType<IService>;
 
     return (
-        <CModal open={isOpenModal} onCancel={() => dispatch(toggleModal())} footer={null} width={800}>
-            <Divider><CTitle level={4}>Chọn dịch vụ</CTitle></Divider>
+        <CModal title="Bảng dịch vụ" open={isOpenModal} onCancel={() => dispatch(toggleModal())} footer={null} width={800}>
             <CSkeleton loading={service.loading}>
                 <CTable
                     columns={columns}
                     dataSource={service.data?.map((item, index) => ({ ...item, index: index + 1, key: item.id }))}
-                    pagination={{ defaultPageSize: 5, showSizeChanger: false }}
+                    pagination={{ defaultPageSize: 6, showSizeChanger: false }}
                 />
             </CSkeleton>
         </CModal>

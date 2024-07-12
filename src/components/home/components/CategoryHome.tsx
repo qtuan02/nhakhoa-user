@@ -1,4 +1,6 @@
 import { getCategories } from "@/apis/categoryApi";
+import CCard from "@/custom_antd/CCard";
+import CCol from "@/custom_antd/CCol";
 import CRow from "@/custom_antd/CRow";
 import CSkeleton from "@/custom_antd/CSkeleton";
 import CTitle from "@/custom_antd/CTitle";
@@ -21,7 +23,11 @@ export default function CategoryHome() {
             <CTitle className="!text-center my-10">Chăm sóc sức khỏe răng miệng toàn diện</CTitle>
             <CSkeleton loading={category.loading}>
                 <CRow gutter={[16, 16]}>
-
+                    {category.data.map((c, index) => (
+                        <CCol span={6} key={index} className="!px-4 py-2">
+                            <CCard image={c.image}><CTitle className="text-center hover:text-blue-600 cursor-pointer" level={4}>{c.name}</CTitle></CCard>
+                        </CCol>
+                    ))}
                 </CRow>
             </CSkeleton>
         </>

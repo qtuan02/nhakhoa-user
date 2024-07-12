@@ -29,8 +29,8 @@ export default function AppHeader() {
             label: "Dịch vụ"
         },
         {
-            key: "/bang-gia",
-            label: "Bảng giá"
+            key: "/doi-ngu-nha-si",
+            label: "Đội ngũ nha sĩ"
         }
     ];
 

@@ -31,3 +31,137 @@
     border-inline-width: 6px 0 !important;
     border-block-width: 6px 0 !important;
 }
+.intro-container {
+  padding: 20px 20px;
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  margin-bottom: 16px;
+}
+
+.main-title {
+  color: #1D2A4B;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 24px;
+  color: #1D2A4B;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.intro-paragraph {
+  font-size: 16px;
+  color: #4F4F4F;
+  margin-bottom: 0;
+}
+
+.image-container {
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+}
+
+.image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(29, 42, 75, 0.8);
+}
+
+.intro-container {
+  padding: 20px;
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  margin-bottom: 16px;
+}
+
+.main-title {
+  color: #1D2A4B;
+  margin-bottom: 5px; /* Reduced margin-bottom */
+}
+
+.subtitle {
+  font-size: 24px;
+  color: #1D2A4B;
+  display: block;
+  margin-bottom: 10px; /* Reduced margin-bottom */
+}
+
+.intro-paragraph {
+  font-size: 16px;
+  color: #4F4F4F;
+  margin-bottom: 0;
+}
+
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.image-container::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(29, 42, 75, 0.8);
+  z-index: 0;
+}
+
+.image-container::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(29, 42, 75, 0.5);
+  z-index: 0;
+}
+.intro-container {
+  padding: 20px;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.5rem; 
+  color: #888; 
+}
+
+.intro-paragraph {
+  font-size: 1rem; 
+  margin-top: 10px;
+}
+
+.image-container .main-image {
+  width: 100%;
+  border-radius: 8px;
+}

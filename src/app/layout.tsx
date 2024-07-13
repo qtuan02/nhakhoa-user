@@ -7,6 +7,10 @@ import AppFooter from "@/components/layout/AppFooter";
 import { ReduxProvider } from "@/redux/provider";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import 'swiper/css';
+import 'swiper/css/effect-cube';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <ReduxProvider>
             <div>
               <AppHeader />
-              <main className="mt-[64px]">
+              <main className="mt-[70px]">
                 {children}
               </main>
               <AppFooter />

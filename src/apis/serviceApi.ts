@@ -16,3 +16,15 @@ export const getServices = createAsyncThunk<IResponse>(
         }
     }
 );
+
+export const getHotServices = createAsyncThunk<IResponse>(
+    'service/getHot',
+    async () => {
+        try{
+            const res = await axiosClient.get(URL+"?page=1&limit="+appConfig.HOT_SERVICE);
+            return res.data;
+        }catch(error: any) {
+            throw error?.response?.data;
+        }
+    }
+);

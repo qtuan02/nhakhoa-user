@@ -70,7 +70,7 @@ export default function AppFooter() {
         }
     ];
     return (
-        <Footer className="w-full !bg-[#fff] h-[500px]">
+        <Footer className="w-full !bg-[#fff] h-[500px] mt-10">
             <CRow className="h-full justify-between">
                 {items.map((item, index) => (
                     <CCol key={index} xs={item.col} offset={item.offset}>

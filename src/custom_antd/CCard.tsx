@@ -1,16 +1,21 @@
-import { Card, CardProps, Col, ColProps, Image } from "antd";
-import React, { ReactNode } from "react";
+import { Card, CardProps, Image } from "antd";
+import React, { CSSProperties, ReactNode } from "react";
 
 interface CCardProps extends CardProps {
     image?: string;
+    styleCard?: CSSProperties;
+    styleImage?: CSSProperties;
     children?: ReactNode;
 }
 
 const CCard: React.FC<CCardProps> = (props) => {
-    const { image, children, ...rest } = props;
-    return <Card style={{ border: "solid 1px black" }} hoverable cover={<Image src={image} alt="Ảnh danh mục..." preview={false} />} {...rest}>
+    const { styleCard, image, styleImage, children, ...rest } = props;
+    return <Card style={styleCard} hoverable
+        cover={<Image className=""
+            style={styleImage} src={image} alt="Ảnh danh mục..." preview={false} />}
+        {...rest}>
         {children}
-     </Card>;
+    </Card>;
 };
 
 export default CCard;

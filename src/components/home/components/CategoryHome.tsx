@@ -16,16 +16,14 @@ export default function CategoryHome() {
         }
     }, [category.status, dispatch]);
 
-    console.log(category.data);
-
     return (
         <>
-            <CTitle className="!text-center my-10">Chăm sóc sức khỏe răng miệng toàn diện</CTitle>
+            <CTitle className="!text-center">Chăm sóc sức khỏe răng miệng toàn diện</CTitle>
             <CSkeleton loading={category.loading}>
-                <CRow gutter={[16, 16]}>
+                <CRow gutter={[16, 16]} className="p-2">
                     {category.data.map((c, index) => (
                         <CCol span={6} key={index} className="!px-4 py-2">
-                            <CCard image={c.image}><CTitle className="text-center hover:text-blue-600 cursor-pointer" level={4}>{c.name}</CTitle></CCard>
+                            <CCard image={c.image} styleCard={{ border: "1px solid" }} styleImage={{ height: 150 }}><CTitle className="text-center hover:text-blue-600 cursor-pointer" level={4}>{c.name}</CTitle></CCard>
                         </CCol>
                     ))}
                 </CRow>

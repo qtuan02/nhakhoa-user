@@ -1,16 +1,16 @@
 "use client";
-import CarouselHome from "./components/CarouselHome";
 import CategoryHome from "./components/CategoryHome";
 import HotServiceHome from "./components/HotServiceHome";
+import SwiperHome from "./components/SwiperHome";
 
 export default function HomeComponent() {
 
     return (
         <>
-            <CarouselHome />
-            <div className="mx-28">
+            <SwiperHome />
+            <div className="mx-32 mt-20">
                 <CategoryHome />
-                <br />
+                <br /><br />
                 <HotServiceHome />
             </div>
         </>

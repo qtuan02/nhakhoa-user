@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { getColumnSearchProps, TOAST_SUCCESS, TOAST_WARNING } from "@/utils/FunctionUiHelpers";
 import CTable from "@/custom_antd/CTable";
 import CTitle from "@/custom_antd/CTitle";
+import { customNumberPrice } from "@/utils/FunctionHelpers";
 
 export default function ModalAppoiment() {
     const dispatch = useAppDispatch();
@@ -17,8 +18,10 @@ export default function ModalAppoiment() {
     const isOpenModal = useAppSelector((state) => state.appoinment.modal);
 
     useEffect(() => {
-        dispatch(getServices());
-    }, [dispatch]);
+        if(service.status === "completed" || service.status === "rejected"){
+            dispatch(getServices());
+        }
+    }, [dispatch, service.status]);
 
     const columns: TableColumnsType<IService> = [
         {
@@ -49,7 +52,7 @@ export default function ModalAppoiment() {
             key: "min_price",
             width: 150,
             sorter: (a: any, b: any) => a.min_price - b.min_price,
-            render: (min_price, item) => <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(min_price))+"/"+item.unit}</span>
+            render: (min_price, item) => <span>{customNumberPrice(min_price)+"/"+item.unit}</span>
         },
         {
             title: "Thao tác",

@@ -8,3 +8,7 @@ export const customItemMenu = (label?: ReactNode, key?: Key, type?: 'group'): Me
 }; 
 
 export const getHoverColors = (colors: string[]) => colors.map((color) => new TinyColor(color).darken(10).toString());
+
+export const customNumberPrice = (value: number | undefined) => {
+	return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(value));
+}

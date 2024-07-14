@@ -11,10 +11,11 @@ import CTitle from "@/custom_antd/CTitle";
 import { IAppoinment, IDate, ITime } from "@/interfaces/IAppoinment";
 import { IDoctor } from "@/interfaces/IDoctor";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { deleteService, toggleModal } from "@/redux/reducers/appoinmentReducer";
+import { deleteService, setDoctorId, toggleModal } from "@/redux/reducers/appoinmentReducer";
 import { setDate, setTime } from "@/redux/reducers/scheduleReducer";
 import { Avatar, Form, List, Select } from "antd";
 import ModalAppoiment from "./ModalAppoinment";
+import { useEffect } from "react";
 
 interface FormComponentProps {
     onSubmit: (values: IAppoinment) => void;
@@ -45,6 +46,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
 
     const handleDoctorChange = (doctorId: string) => {
         form.setFieldsValue({ date: '', time: '' });
+        dispatch(setDoctorId(doctorId));
         if (doctorId) {
             dispatch(getDate(doctorId));
             dispatch(setTime());
@@ -56,11 +58,18 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
     const handleDateChange = (date: string) => {
         form.setFieldsValue({ time: '' });
         if (date) {
-            dispatch(getTime({ doctor_id: form.getFieldValue("doctor_id"), date: date }));
+            dispatch(getTime({ doctor_id: appoinment.doctor_id as string, date: date }));
         } else {
             dispatch(setTime());
         }
     }
+
+    useEffect(() => {
+        if(appoinment.doctor_id){
+            form.setFieldValue('doctor_id', appoinment.doctor_id);
+            dispatch(getDate(appoinment.doctor_id));
+        }
+    }, [appoinment.doctor_id, dispatch, form])
 
     return (
         <div className="w-[1000px] mx-auto p-12">

@@ -9,12 +9,15 @@ import dayjs from 'dayjs';
 
 export default function AppoinmentComponent() {
     const dispatch = useAppDispatch();
+    const doctor = useAppSelector((state) => state.doctor);
     const appoinment = useAppSelector((state) => state.appoinment);
 
     useEffect(() => {
-        dispatch(getDoctors());
+        if(doctor.status === 'completed' || doctor.status === 'rejected') {
+            dispatch(getDoctors());
+        }
         dispatch(getTimes());
-    }, [dispatch]);
+    }, [dispatch, doctor.status]);
 
     const handleSubmit = (values: IAppoinment) => {
         values.date = dayjs(values.date).format('YYYY-MM-DD');

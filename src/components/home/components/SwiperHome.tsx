@@ -5,7 +5,7 @@ import { Image } from 'antd';
 export default function SwiperHome() {
     return (
         <Swiper
-            className='w-[95%]'
+            className='w-[95%] pt-20'
             effect={'cube'}
             grabCursor={true}
             cubeEffect={{

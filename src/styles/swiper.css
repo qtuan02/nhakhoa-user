@@ -1,0 +1,7 @@
+ol,
+ul,
+menu {
+  list-style: outside !important;
+  margin: 0;
+  padding: 0;
+}

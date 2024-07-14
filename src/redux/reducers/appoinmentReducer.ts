@@ -7,12 +7,14 @@ interface IAppoinmentState {
     modal: boolean;
     loading: boolean;
     services: IService[];
+    doctor_id?: string;
 };
 
 const initialState: IAppoinmentState = {
     modal: false,
     loading: false,
     services: [],
+    doctor_id: ''
 };
 
 const appoinmentSlice = createSlice({
@@ -40,6 +42,9 @@ const appoinmentSlice = createSlice({
             } else {
                 TOAST_ERROR("Dịch vụ không tồn tại!");
             }
+        },
+        setDoctorId: (state, action: PayloadAction<string>) => {
+            state.doctor_id = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -60,5 +65,5 @@ const appoinmentSlice = createSlice({
     }
 });
 
-export const { toggleModal, addService, deleteService } = appoinmentSlice.actions;
+export const { toggleModal, addService, deleteService, setDoctorId } = appoinmentSlice.actions;
 export default appoinmentSlice.reducer;

@@ -11,6 +11,7 @@ import 'swiper/css';
 import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <ReduxProvider>
             <div>
               <AppHeader />
-              <main className="mt-[70px]">
+              <main className="mt-[64px]">
                 {children}
               </main>
               <AppFooter />

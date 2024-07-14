@@ -7,7 +7,7 @@ interface CSkeletonProps extends SkeletonProps {
 
 const CSkeleton: React.FC<CSkeletonProps> = (props) => {
 	const { children, ...rest } = props;
-	return <Skeleton {...rest}>{children}</Skeleton>;
+	return <Skeleton {...rest} paragraph={{ rows: 8 }}>{children}</Skeleton>;
 };
 
 export default CSkeleton;

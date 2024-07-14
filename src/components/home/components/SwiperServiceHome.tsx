@@ -14,7 +14,7 @@ import CButton from "@/custom_antd/CButton";
 import { addService } from "@/redux/reducers/appoinmentReducer";
 import { useRouter } from 'next-nprogress-bar';
 
-export default function HotServiceHome() {
+export default function SwiperServiceHome() {
     const router = useRouter();
     const dispatch = useAppDispatch();
     const service = useAppSelector((state) => state.service);
@@ -36,7 +36,7 @@ export default function HotServiceHome() {
                     navigation={true}
                 >
                     {service.dataHot.map((s, index) => (
-                        <SwiperSlide key={index} className="none">
+                        <SwiperSlide key={index}>
                             <CCard image={s.image} styleImage={{ height: 200 }}>
                                 <div className="h-28">
                                     <CTitle level={4}>{s.name}</CTitle>

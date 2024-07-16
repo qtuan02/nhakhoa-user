@@ -10,11 +10,11 @@ import { addService } from "@/redux/reducers/appoinmentReducer";
 import { customNumberPrice } from "@/utils/FunctionHelpers";
 import { useRouter } from "next-nprogress-bar";
 
-interface CardCategoryProps {
+interface DetailCategoryProps {
     data?: ICategory;
 }
 
-export default function CardCategory({ data }: CardCategoryProps) {
+export default function DetailCategory({ data }: DetailCategoryProps) {
     const router = useRouter();
     const dispatch = useAppDispatch();
     return (
@@ -26,7 +26,7 @@ export default function CardCategory({ data }: CardCategoryProps) {
             <CRow gutter={[16, 16]}>
                 {data?.services?.map((s, index) =>
                     <CCol span={6} key={index}>
-                        <CCard image={s.image} styleImage={{ height: 200 }}>
+                        <CCard image={s.image} styleImage={{ height: 200 }} onClick={() => router.push("/dich-vu/"+s.id)}>
                             <div className="h-28">
                                 <CTitle level={4}>{s.name}</CTitle>
                                 <CRow justify={"space-between"} align="bottom">
@@ -34,9 +34,10 @@ export default function CardCategory({ data }: CardCategoryProps) {
                                     <p className="text-[10px]">Đã bán: {s.quantity_sold}</p>
                                 </CRow>
                                 <CRow justify={"space-between"} className="mt-5">
-                                    <CButton type="default" size="middle" shape="round">Chi tiết</CButton>
+                                    <CButton type="default" size="middle" shape="round" link={"/dich-vu/"+s.id}>Chi tiết</CButton>
                                     <CButton type="primary" size="middle" shape="round"
-                                        onClick={() => {
+                                        onClick={(e) => {
+                                            e.stopPropagation()
                                             dispatch(addService(s))
                                             router.push("/dat-lich")
                                         }}>Chọn dịch vụ

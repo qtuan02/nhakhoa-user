@@ -56,13 +56,13 @@ export default function AppHeader() {
                 <CCol xs={5} className="h-full">
                     <CRow>
                         <CCol xs={12}>
-                            <CButton type="primary" className="rounded-lg" link="dat-lich" icon={<FontAwesomeIcon icon={faCalendarDays} />}>
+                            <CButton type="primary" className="rounded-lg" link="/dat-lich" icon={<FontAwesomeIcon icon={faCalendarDays} />}>
                                 <span className="font-bold">ĐẶT LỊCH</span>
                             </CButton>
                         </CCol>
                         <CCol xs={12}>
                             <a href="tel:0338230318">
-                                <CButton type="primary" danger className="rounded-lg" link="dat-lich" icon={<FontAwesomeIcon icon={faPhone} />}>
+                                <CButton type="primary" danger className="rounded-lg" icon={<FontAwesomeIcon icon={faPhone} />}>
                                     <span className="font-bold">033 8230 318</span>
                                 </CButton>
                             </a>

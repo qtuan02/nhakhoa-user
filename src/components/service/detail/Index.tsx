@@ -1,37 +1,37 @@
-"use client";
-import { getCategory } from "@/apis";
+"use client"
+import { getService } from "@/apis";
 import CBreadcrumb from "@/custom_antd/CBreadscrumb";
 import CSkeleton from "@/custom_antd/CSkeleton";
-import { ICategory } from "@/interfaces/ICategory";
+import { IService } from "@/interfaces/IService";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import DetailCategory from "./components/DetailCategory";
+import DetailService from "../components/DetailService";
 
-export default function CategoryComponent() {
+export default function SerivceDetailComponent() {
     const { id } = useParams();
     const [loading, setLoading] = useState<boolean>(false);
-    const [data, setData] = useState<ICategory | undefined>(undefined);
+    const [data, setData] = useState<IService | undefined>(undefined);
+
+    const getDataService = async (id : string) => {
+        setLoading(true);
+        const value = await getService(id);
+        setData(value);
+        setLoading(false);
+    }
 
     const items = [
         {
             title: <Link href="/trang-chu">Trang chủ</Link>
         },
         {
-            title: <Link className="!text-blue-700 font-bold" href="#">Danh mục</Link>
+            title: <Link className="!text-blue-700 font-bold" href="#">Dịch vụ</Link>
         }
     ];
 
-    const getDataCategory = async (id: string) => {
-        setLoading(true);
-        const value = await getCategory(id);
-        setData(value);
-        setLoading(false);
-    }
-
     useEffect(() => {
         if(id){
-            getDataCategory(id as string);
+            getDataService(id as string);
         }
     }, [id])
 
@@ -40,10 +40,8 @@ export default function CategoryComponent() {
             <CBreadcrumb items={items} />
             <br />
             <CSkeleton loading={loading}>
-                <DetailCategory data={data} />
+                <DetailService data={data} />
             </CSkeleton>
-            <br />
-            <CSkeleton loading={loading}/>
         </div>
     );
 }

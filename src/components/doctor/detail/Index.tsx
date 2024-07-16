@@ -2,9 +2,9 @@
 import CBreadcrumb from "@/custom_antd/CBreadscrumb";
 import { Skeleton } from "antd";
 import Link from "next/link";
-import CardDoctor from "../components/CardDoctor";
 import { useAppSelector } from "@/redux/hooks";
 import { useEffect } from "react";
+import DetailDoctor from "../components/DetailDoctor";
 
 export default function DoctorDetailComponent() {
     const doctor = useAppSelector((state) => state.doctor);
@@ -27,7 +27,7 @@ export default function DoctorDetailComponent() {
             <CBreadcrumb items={items} />
             <br />
             <Skeleton loading={doctor.loadingDoctor}>
-                <CardDoctor data={doctor.doctor} />
+                <DetailDoctor data={doctor.doctor} />
             </Skeleton>
         </div>
     );

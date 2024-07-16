@@ -37,7 +37,7 @@ export default function SwiperServiceHome() {
                 >
                     {service.dataHot.map((s, index) => (
                         <SwiperSlide key={index}>
-                            <CCard image={s.image} styleImage={{ height: 200 }}>
+                            <CCard image={s.image} styleImage={{ height: 200 }} onClick={() => router.push("/dich-vu/"+s.id)}>
                                 <div className="h-28">
                                     <CTitle level={4}>{s.name}</CTitle>
                                     <CRow justify={"space-between"} align="bottom">
@@ -45,9 +45,10 @@ export default function SwiperServiceHome() {
                                         <p className="text-[10px]">Đã bán: {s.quantity_sold}</p>
                                     </CRow>
                                     <CRow justify={"space-between"} className="mt-5">
-                                        <CButton type="default" size="middle" shape="round">Chi tiết</CButton>
+                                        <CButton type="default" size="middle" shape="round" link={"/dich-vu/"+s.id}>Chi tiết</CButton>
                                         <CButton type="primary" size="middle" shape="round"
-                                            onClick={() => {
+                                            onClick={(e) => {
+                                                e.stopPropagation()
                                                 dispatch(addService(s))
                                                 router.push("/dat-lich")
                                             }}>Chọn dịch vụ

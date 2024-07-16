@@ -13,11 +13,11 @@ import { Divider, Flex, Image } from "antd";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 
-interface CardDoctorProps {
+interface DetailDoctorProps {
     data?: IDoctor | null;
 }
 
-export default function CardDoctor({ data }: CardDoctorProps) {
+export default function DetailDoctor({ data }: DetailDoctorProps) {
     const router = useRouter();
     const dispatch = useAppDispatch();
     const doctor = useAppSelector((state) => state.doctor);

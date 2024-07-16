@@ -23,3 +23,12 @@ export const formatDate = (date: string | undefined) => {
     const formatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
     return formatter.format(parsedDate);
 }
+
+export const removeVietnameseTones = (value: string | undefined) => {
+    if (!value) return "";
+    return value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D");
+};

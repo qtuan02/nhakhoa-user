@@ -5,23 +5,33 @@ import CSkeleton from "@/custom_antd/CSkeleton";
 import { IService } from "@/interfaces/IService";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addService, toggleModal } from "@/redux/reducers/appoinmentReducer";
-import { Divider, Image, TableColumnsType } from "antd";
-import { useEffect } from "react";
-import { getColumnSearchProps, TOAST_SUCCESS, TOAST_WARNING } from "@/utils/FunctionUiHelpers";
+import { Flex, Image, TableColumnsType } from "antd";
+import { useEffect, useState } from "react";
+import { getColumnSearchProps } from "@/utils/FunctionUiHelpers";
 import CTable from "@/custom_antd/CTable";
+import { customNumberPrice, removeVietnameseTones } from "@/utils/FunctionHelpers";
+import CSearch from "@/custom_antd/CSearch";
 import CTitle from "@/custom_antd/CTitle";
-import { customNumberPrice } from "@/utils/FunctionHelpers";
 
 export default function ModalAppoiment() {
     const dispatch = useAppDispatch();
+    const [search, setSearch] = useState<string>("");
     const service = useAppSelector((state) => state.service);
     const isOpenModal = useAppSelector((state) => state.appoinment.modal);
 
     useEffect(() => {
-        if(service.status === "completed" || service.status === "rejected"){
+        if (service.status === "completed" || service.status === "rejected") {
             dispatch(getServices());
         }
     }, [dispatch, service.status]);
+
+    const onSearch = (value: string) => {
+        setSearch(value);
+    };
+
+    const filterData = service.data.filter((item: IService) =>
+        removeVietnameseTones(item?.name?.toLowerCase()).includes(removeVietnameseTones(search.toLowerCase()))
+    );
 
     const columns: TableColumnsType<IService> = [
         {
@@ -44,7 +54,6 @@ export default function ModalAppoiment() {
             dataIndex: "name",
             key: "name",
             width: 250,
-            ...getColumnSearchProps('name'),
         },
         {
             title: "Giá/Đơn vị",
@@ -52,7 +61,7 @@ export default function ModalAppoiment() {
             key: "min_price",
             width: 150,
             sorter: (a: any, b: any) => a.min_price - b.min_price,
-            render: (min_price, item) => <span>{customNumberPrice(min_price)+"/"+item.unit}</span>
+            render: (min_price, item) => <span>{customNumberPrice(min_price) + "/" + item.unit}</span>
         },
         {
             title: "Thao tác",
@@ -63,11 +72,15 @@ export default function ModalAppoiment() {
     ] as TableColumnsType<IService>;
 
     return (
-        <CModal title="Bảng dịch vụ" open={isOpenModal} onCancel={() => dispatch(toggleModal())} footer={null} width={800}>
+        <CModal title={<Flex align="center" justify="space-between" className="w-[calc(100%-50px)]">
+            <CTitle level={4}>Bảng dịch vụ</CTitle>
+            <CSearch className="!w-[200px]" size="middle" placeholder="Tìm dịch vụ..." onSearch={onSearch} enterButton />
+        </Flex>}
+        open={isOpenModal} onCancel={() => dispatch(toggleModal())} footer={null} width={800}>
             <CSkeleton loading={service.loading}>
                 <CTable
                     columns={columns}
-                    dataSource={service.data?.map((item, index) => ({ ...item, index: index + 1, key: item.id }))}
+                    dataSource={filterData.map((item, index) => ({ ...item, index: index + 1, key: item.id }))}
                     pagination={{ defaultPageSize: 6, showSizeChanger: false }}
                 />
             </CSkeleton>

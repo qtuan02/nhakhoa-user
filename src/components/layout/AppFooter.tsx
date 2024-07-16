@@ -70,11 +70,11 @@ export default function AppFooter() {
         }
     ];
     return (
-        <Footer className="w-full !bg-[#fff] h-[500px] mt-10">
+        <Footer className="w-full !bg-[#fff] h-[500px] !pt-10 mt-10">
             <CRow className="h-full justify-between">
                 {items.map((item, index) => (
                     <CCol key={index} xs={item.col} offset={item.offset}>
-                        <span className="font-bold text-[18px] block mb-4">{item.label}</span>
+                        <span className="font-bold text-[18px] block">{item.label}</span>
                         {item.children?.map((i, index) => (
                             <span key={index} className="block mt-4">{i.label}</span>
                         ))}

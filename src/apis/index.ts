@@ -3,3 +3,4 @@ export * from "./timeApi";
 export * from "./scheduleApi";
 export * from "./appoinmentApi";
 export * from "./serviceApi";
+export * from "./categoryApi";

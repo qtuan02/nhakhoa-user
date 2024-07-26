@@ -35,7 +35,7 @@ export default function SwiperServiceHome() {
                     spaceBetween={30}
                     navigation={true}
                 >
-                    {service.dataHot.map((s, index) => (
+                    {service?.dataHot?.map((s, index) => (
                         <SwiperSlide key={index}>
                             <CCard image={s.image} styleImage={{ height: 200 }} onClick={() => router.push("/dich-vu/"+s.id)}>
                                 <div className="h-28">

@@ -5,9 +5,9 @@ import { getCategories } from "@/apis/categoryApi";
 import { ICategory } from "@/interfaces/ICategory";
 
 interface ICategoryState {
-    loading?: boolean;
-    status?: 'pending' | 'completed' | 'rejected';
-    data: ICategory[];
+    loading: boolean;
+    status: 'pending' | 'completed' | 'rejected';
+    data?: ICategory[];
 };
 
 const initialState: ICategoryState = {

@@ -99,7 +99,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         </CFormItem>
                     </CCol>
                     <CCol xs={12}>
-                        {schedule.date.length === 0 ?
+                        {schedule?.date?.length === 0 ?
                             <CRow gutter={12}>
                                 <CCol xs={12}>
                                     <CFormItem label="Ngày hẹn" name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
@@ -122,7 +122,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                                     <CFormItem label="Ngày hẹn" name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
                                         <CSelect loading={schedule.loadingDate} className="!h-10 ts-16" onChange={handleDateChange}>
                                             <Select.Option value="">--Chọn ngày</Select.Option>
-                                            {schedule.date?.map((d: IDate) => (
+                                            {schedule?.date?.map((d: IDate) => (
                                                 <Select.Option key={d.date} value={d.date}>{d.date}</Select.Option>
                                             ))}
                                         </CSelect>
@@ -143,7 +143,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                     </CCol>
                 </CRow>
                 <CFormItem label="Dịch vụ đặt hẹn" name="services">
-                    {appoinment.services.length === 0 ?
+                    {appoinment?.services?.length === 0 ?
                         <div className="bg-[#e4e4e4] h-[150px] flex items-center justify-center text-center pb-2 rounded-md border-solid border-[1px] border-[#d9d9d9]">
                             <div>
                                 <p className="block py-2">Chưa có dịch vụ nào được chọn. Chọn dịch vụ (nếu có)!</p>

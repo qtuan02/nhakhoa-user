@@ -32,7 +32,7 @@ export default function SwiperDoctor() {
             modules={[EffectCoverflow]}
             className='w-full h-[450px]'
         >
-            {doctor.data.map((d, index) =>
+            {doctor?.data?.map((d, index) =>
                 <SwiperSlide key={index} className='w-[600px] h-[400px] shadow-lg rounded-lg border border-solid border-gray-200'>
                     <div className='relative w-full h-full flex flex-col justify-between'>
                         <div className='px-5 pt-5 w-[400px] flex-grow'>

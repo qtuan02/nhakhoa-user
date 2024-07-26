@@ -4,12 +4,12 @@ import { IService } from "@/interfaces/IService";
 import { getHotServices, getServices } from "@/apis";
 
 interface IServiceState {
-    loading?: boolean;
-    status?: 'pending' | 'completed' | 'rejected';
-    data: IService[];
-    loadingHot?: boolean;
-    statusHot?: 'pending' | 'completed' | 'rejected';
-    dataHot: IService[];
+    loading: boolean;
+    status: 'pending' | 'completed' | 'rejected';
+    data?: IService[];
+    loadingHot: boolean;
+    statusHot: 'pending' | 'completed' | 'rejected';
+    dataHot?: IService[];
 };
 
 const initialState: IServiceState = {

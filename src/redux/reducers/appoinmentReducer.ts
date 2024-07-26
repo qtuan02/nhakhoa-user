@@ -6,7 +6,7 @@ import { createAppoinment } from "@/apis";
 interface IAppoinmentState {
     modal: boolean;
     loading: boolean;
-    services: IService[];
+    services?: IService[];
     doctor_id?: string;
 };
 
@@ -26,18 +26,18 @@ const appoinmentSlice = createSlice({
         },
         addService: (state, action: PayloadAction<IService>) => {
             const service = action.payload;
-            if(state.services.find(s => s.id === service.id)) {
+            if(state?.services?.find(s => s.id === service.id)) {
                 TOAST_WARNING("Dịch vụ đã được thêm!");
             }else{
-                state.services.push(service);
+                state?.services?.push(service);
                 TOAST_SUCCESS("Thêm dịch vụ thành công.");
             }
         },
         deleteService: (state, action: PayloadAction<number>) => {
             const service_id = action.payload;
-            const index = state.services.findIndex(s => s.id === service_id);
-            if (index !== -1) {
-                state.services.splice(index, 1);
+            const index = state?.services?.findIndex(s => s.id === service_id);
+            if (index) {
+                state?.services?.splice(index, 1);
                 TOAST_SUCCESS("Xóa dịch vụ thành công.");
             } else {
                 TOAST_ERROR("Dịch vụ không tồn tại!");

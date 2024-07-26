@@ -4,9 +4,9 @@ import { getTimes } from "@/apis";
 import { ITime } from "@/interfaces/IAppoinment";
 
 interface ITimeState {
-    loading?: boolean;
-    status?: 'pending' | 'completed' | 'rejected';
-    data: ITime[];
+    loading: boolean;
+    status: 'pending' | 'completed' | 'rejected';
+    data?: ITime[];
 };
 
 const initialState: ITimeState = {

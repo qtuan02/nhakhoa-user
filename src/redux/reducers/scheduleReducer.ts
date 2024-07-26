@@ -4,12 +4,12 @@ import { IDate, ITime } from "@/interfaces/IAppoinment";
 import { getDate, getTime } from "@/apis/scheduleApi";
 
 interface IScheduleState {
-    loadingDate?: boolean;
-    statusDate?: 'pending' | 'completed' | 'rejected';
-    date: IDate[];
-    loadingTime?: boolean;
-    statusTime?: 'pending' | 'completed' | 'rejected';
-    time: ITime[];
+    loadingDate: boolean;
+    statusDate: 'pending' | 'completed' | 'rejected';
+    date?: IDate[];
+    loadingTime: boolean;
+    statusTime: 'pending' | 'completed' | 'rejected';
+    time?: ITime[];
 };
 
 const initialState: IScheduleState = {

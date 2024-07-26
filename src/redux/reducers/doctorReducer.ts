@@ -4,12 +4,12 @@ import { IDoctor } from "@/interfaces/IDoctor";
 import { getDoctor, getDoctors } from "@/apis";
 
 interface IDoctorState {
-    loading?: boolean;
-    status?: 'pending' | 'completed' | 'rejected';
-    data: IDoctor[];
-    loadingDoctor?: boolean;
-    statusDoctor?: 'pending' | 'completed' | 'rejected';
-    doctor: IDoctor | null;
+    loading: boolean;
+    status: 'pending' | 'completed' | 'rejected';
+    data?: IDoctor[];
+    loadingDoctor: boolean;
+    statusDoctor: 'pending' | 'completed' | 'rejected';
+    doctor?: IDoctor | null;
 };
 
 const initialState: IDoctorState = {
@@ -17,6 +17,8 @@ const initialState: IDoctorState = {
     status: 'completed',
     data: [],
     doctor: null,
+    loadingDoctor: false,
+    statusDoctor: 'completed',
 };
 
 const doctorSlice = createSlice({

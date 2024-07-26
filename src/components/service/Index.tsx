@@ -33,7 +33,7 @@ export default function SerivceComponent() {
         setSearch(event.target.value);
     };
 
-    const filterData = service.data.filter((item: IService) =>
+    const filterData = service?.data?.filter((item: IService) =>
         removeVietnameseTones(item?.name?.toLowerCase()).includes(removeVietnameseTones(search.toLowerCase()))
     );
 

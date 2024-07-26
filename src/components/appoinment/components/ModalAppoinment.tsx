@@ -29,7 +29,7 @@ export default function ModalAppoiment() {
         setSearch(value);
     };
 
-    const filterData = service.data.filter((item: IService) =>
+    const filterData = service?.data?.filter((item: IService) =>
         removeVietnameseTones(item?.name?.toLowerCase()).includes(removeVietnameseTones(search.toLowerCase()))
     );
 
@@ -80,7 +80,7 @@ export default function ModalAppoiment() {
             <CSkeleton loading={service.loading}>
                 <CTable
                     columns={columns}
-                    dataSource={filterData.map((item, index) => ({ ...item, index: index + 1, key: item.id }))}
+                    dataSource={filterData?.map((item, index) => ({ ...item, index: index + 1, key: item.id }))}
                     pagination={{ defaultPageSize: 6, showSizeChanger: false }}
                 />
             </CSkeleton>

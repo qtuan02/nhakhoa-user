@@ -19,7 +19,7 @@ export default function CategoryHome() {
     return (
         <CSkeleton loading={category.loading}>
             <CRow gutter={[16, 16]} className="p-2">
-                {category.data.map((c, index) => (
+                {category?.data?.map((c, index) => (
                     <CCol span={6} key={index} className="!px-4 py-2">
                         <CCard link={"/danh-muc/" + c.id} image={c.image} styleCard={{ border: "1px solid" }} styleImage={{ height: 150 }}><CTitle className="text-center hover:text-blue-600 cursor-pointer" level={4}>{c.name}</CTitle></CCard>
                     </CCol>

@@ -3,6 +3,7 @@ import CTitle from "@/custom_antd/CTitle";
 import CategoryHome from "./components/CategoryHome";
 import SwiperHome from "./components/SwiperHome";
 import SwiperServiceHome from "./components/SwiperServiceHome";
+import SwiperDoctor from "./components/SwiperDoctor";
 
 export default function HomeComponent() {
 
@@ -14,6 +15,8 @@ export default function HomeComponent() {
                 <CategoryHome />
                 <br /><br />
                 <SwiperServiceHome />
+                <br /><br />
+                <SwiperDoctor />
             </div>
         </>
     );

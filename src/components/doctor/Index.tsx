@@ -1,30 +1,34 @@
 "use client";
-import CTitle from "@/custom_antd/CTitle";
-import { Image } from "antd";
-import SwiperDoctor from "./components/SwiperDoctor";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import CBreadcrumb from "@/custom_antd/CBreadscrumb";
+import { Skeleton } from "antd";
+import Link from "next/link";
+import { useAppSelector } from "@/redux/hooks";
 import { useEffect } from "react";
-import { getDoctors } from "@/apis";
-import CSkeleton from "@/custom_antd/CSkeleton";
+import DetailDoctor from "./components/DetailDoctor";
 
-export default function DoctorComponent() {
-    const dispatch = useAppDispatch();
+export default function DoctorDetailComponent() {
     const doctor = useAppSelector((state) => state.doctor);
-    useEffect(() => {
-        if(doctor.status === 'completed' || doctor.status === 'rejected') {
-            dispatch(getDoctors());
+
+    const items = [
+        {
+            title: <Link href="/trang-chu">Trang chủ</Link>
+        },
+        {
+            title: <Link className="!text-blue-700 font-bold" href="#">Bác sĩ</Link>
         }
-    }, [dispatch, doctor.status]);
+    ];
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
-        <>
-            <Image src="https://benhvienbacha.vn/wp-content/uploads/2023/06/Banner-web-BS-1820x595.jpg" alt="Hình ảnh..." preview={false} />
-            <CTitle className="text-center py-5">ĐỘI NGŨ BÁC SĨ</CTitle>
-            <div className="mx-32">
-                <CSkeleton loading={doctor.loading}>
-                    <SwiperDoctor />
-                </CSkeleton>
-            </div>
-        </>
+        <div className="mx-32 mt-28">
+            <CBreadcrumb items={items} />
+            <br />
+            <Skeleton loading={doctor.loadingDoctor}>
+                <DetailDoctor data={doctor.doctor} />
+            </Skeleton>
+        </div>
     );
-}    
+}

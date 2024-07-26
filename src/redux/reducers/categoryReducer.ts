@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
-import { IDoctor } from "@/interfaces/IDoctor";
 import { getCategories } from "@/apis/categoryApi";
 import { ICategory } from "@/interfaces/ICategory";
 

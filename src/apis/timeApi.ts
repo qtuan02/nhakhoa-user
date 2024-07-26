@@ -3,7 +3,7 @@ import axiosClient from "@/commons/AxiosConfig";
 import { IResponse } from "@/interfaces/IResponse";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const URL = appConfig.API_LOCAL+"/v2/time";
+const URL = "/v2/time";
 
 export const getTimes = createAsyncThunk<IResponse>(
     'time/get',

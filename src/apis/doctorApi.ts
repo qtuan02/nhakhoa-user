@@ -3,13 +3,13 @@ import axiosClient from "@/commons/AxiosConfig";
 import { IResponse } from "@/interfaces/IResponse";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const URL = appConfig.API_LOCAL+'/v2/doctor';
+const URL = '/v2/doctor';
 
 export const getDoctor = createAsyncThunk<IResponse, string>(
     'doctor/detail',
     async (id) => {
         try{
-            const res = await axiosClient.get(URL+ '/' +id);
+            const res = await axiosClient.get(appConfig.API_LOCAL + URL+ '/' +id);
             return res.data;
         }catch(error: any) {
             throw error?.response?.data;

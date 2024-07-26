@@ -4,11 +4,11 @@ import { IResponse } from "@/interfaces/IResponse";
 import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const URL = appConfig.API_LOCAL+"/v2/service";
+const URL = "/v2/service";
 
 export const getService = async (id: string) => {
     try {
-        const res = await axiosClient.get(URL+ '/' +id);
+        const res = await axiosClient.get(appConfig.API_LOCAL + URL+ '/' +id);
         return res.data.data;
     }catch(error: any) {
         TOAST_ERROR(error?.response?.data?.message);

@@ -1,10 +1,9 @@
-import { appConfig } from "@/commons/AppConfig";
 import axiosClient from "@/commons/AxiosConfig";
 import { IAppoinment } from "@/interfaces/IAppoinment";
 import { IResponse } from "@/interfaces/IResponse";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const URL = appConfig.API_LOCAL+'/v2/appointment';
+const URL = '/v2/appointment';
 
 export const createAppoinment = createAsyncThunk<IResponse, IAppoinment>(
     'appoinment/create',

@@ -36,11 +36,9 @@ const appoinmentSlice = createSlice({
         deleteService: (state, action: PayloadAction<number>) => {
             const service_id = action.payload;
             const index = state?.services?.findIndex(s => s.id === service_id);
-            if (index) {
-                state?.services?.splice(index, 1);
+            if (index !== undefined) {
+                state.services?.splice(index, 1);
                 TOAST_SUCCESS("Xóa dịch vụ thành công.");
-            } else {
-                TOAST_ERROR("Dịch vụ không tồn tại!");
             }
         },
         setDoctorId: (state, action: PayloadAction<string>) => {

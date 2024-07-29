@@ -1,24 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
 import { IService } from "@/interfaces/IService";
-import { getHotServices, getServices } from "@/apis";
+import { serviceSpecialThunk, servicesThunk } from "../thunks/serviceThunk";
+import { RootState } from "../store";
 
 interface IServiceState {
     loading: boolean;
     status: 'pending' | 'completed' | 'rejected';
     data?: IService[];
-    loadingHot: boolean;
-    statusHot: 'pending' | 'completed' | 'rejected';
-    dataHot?: IService[];
+    loadingSpecial: boolean;
+    statusSpecial: 'pending' | 'completed' | 'rejected';
+    dataSpecial?: IService[];
 };
 
 const initialState: IServiceState = {
     loading: false,
     status: 'completed',
     data: [],
-    loadingHot: false,
-    statusHot: 'completed',
-    dataHot: [],
+    loadingSpecial: false,
+    statusSpecial: 'completed',
+    dataSpecial: [],
 };
 
 const serviceSlice = createSlice({
@@ -27,33 +28,34 @@ const serviceSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getServices.pending, (state) => {
+            .addCase(servicesThunk.pending, (state) => {
                 state.status = 'pending';
                 state.loading = true;
             })
-            .addCase(getServices.fulfilled, (state, action) => {
+            .addCase(servicesThunk.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload.data;
             })
-            .addCase(getServices.rejected, (state, action: any) => {
+            .addCase(servicesThunk.rejected, (state, action: any) => {
                 state.data = [];
                 state.loading = false;
-                TOAST_ERROR(action.error?.message)
+                TOAST_ERROR(action?.payload);
             })
-            .addCase(getHotServices.pending, (state) => {
-                state.statusHot = 'pending';
-                state.loadingHot = true;
+            .addCase(serviceSpecialThunk.pending, (state) => {
+                state.statusSpecial = 'pending';
+                state.loadingSpecial = true;
             })
-            .addCase(getHotServices.fulfilled, (state, action) => {
-                state.loadingHot = false;
-                state.dataHot = action.payload.data;
+            .addCase(serviceSpecialThunk.fulfilled, (state, action) => {
+                state.loadingSpecial = false;
+                state.dataSpecial = action.payload.data;
             })
-            .addCase(getHotServices.rejected, (state, action: any) => {
-                state.dataHot = [];
-                state.loadingHot = false;
-                TOAST_ERROR(action.error?.message)
+            .addCase(serviceSpecialThunk.rejected, (state, action: any) => {
+                state.dataSpecial = [];
+                state.loadingSpecial = false;
+                TOAST_ERROR(action?.payload);
             })
     }
 });
 
+export const getServiceState = (state: RootState) => state.service;
 export default serviceSlice.reducer;

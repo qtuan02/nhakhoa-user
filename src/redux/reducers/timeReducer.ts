@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
-import { getTimes } from "@/apis";
-import { ITime } from "@/interfaces/IAppoinment";
+import { ITime } from "@/interfaces/IAppointment";
+import { timesThunk } from "../thunks/timeThunk";
+import { RootState } from "../store";
 
 interface ITimeState {
     loading: boolean;
@@ -21,20 +22,21 @@ const timeSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getTimes.pending, (state) => {
+            .addCase(timesThunk.pending, (state) => {
                 state.status = 'pending';
                 state.loading = true;
             })
-            .addCase(getTimes.fulfilled, (state, action) => {
+            .addCase(timesThunk.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload.data;
             })
-            .addCase(getTimes.rejected, (state, action: any) => {
+            .addCase(timesThunk.rejected, (state, action: any) => {
                 state.data = [];
                 state.loading = false;
-                TOAST_ERROR(action.error?.message)
+                TOAST_ERROR(action?.payload);
             })
     }
 });
 
+export const getTimeState = (state: RootState) => state.time;
 export default timeSlice.reducer;

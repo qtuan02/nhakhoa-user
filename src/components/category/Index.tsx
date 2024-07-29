@@ -1,5 +1,4 @@
 "use client";
-import { getCategory } from "@/apis";
 import CBreadcrumb from "@/custom_antd/CBreadscrumb";
 import CSkeleton from "@/custom_antd/CSkeleton";
 import { ICategory } from "@/interfaces/ICategory";
@@ -7,6 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DetailCategory from "./components/DetailCategory";
+import { categoryApi } from "@/api/categoryApi";
 
 export default function CategoryComponent() {
     const { id } = useParams();
@@ -24,7 +24,7 @@ export default function CategoryComponent() {
 
     const getDataCategory = async (id: string) => {
         setLoading(true);
-        const value = await getCategory(id);
+        const value = await categoryApi.findOne(id);
         setData(value);
         setLoading(false);
     }

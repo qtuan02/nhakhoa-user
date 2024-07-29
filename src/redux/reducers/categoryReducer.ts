@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
-import { getCategories } from "@/apis/categoryApi";
 import { ICategory } from "@/interfaces/ICategory";
+import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
+import { categoriesThunk } from "../thunks/categoryThunk";
+import { RootState } from "../store";
 
 interface ICategoryState {
     loading: boolean;
@@ -21,20 +22,21 @@ const categorySlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getCategories.pending, (state) => {
+            .addCase(categoriesThunk.pending, (state) => {
                 state.status = 'pending';
                 state.loading = true;
             })
-            .addCase(getCategories.fulfilled, (state, action) => {
+            .addCase(categoriesThunk.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload.data;
             })
-            .addCase(getCategories.rejected, (state, action: any) => {
+            .addCase(categoriesThunk.rejected, (state, action) => {
                 state.data = [];
                 state.loading = false;
-                TOAST_ERROR(action.error?.message)
+                TOAST_ERROR(action?.payload);
             })
     }
 });
 
+export const getCategoryState = (state: RootState) => state.category;
 export default categorySlice.reducer;

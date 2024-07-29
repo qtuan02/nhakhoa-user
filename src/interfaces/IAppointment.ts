@@ -1,6 +1,6 @@
 import { IService } from "./IService";
 
-export interface IAppoinment {
+export interface IAppointment {
     name?: string,
     phone?: string,
     email?: string,

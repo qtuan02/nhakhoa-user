@@ -9,18 +9,19 @@ import CButton from '@/custom_antd/CButton';
 import CCol from '@/custom_antd/CCol';
 import { useRouter } from 'next-nprogress-bar';
 import { setDoctorId } from '@/redux/reducers/appoinmentReducer';
-import { getDoctor, getDoctors } from '@/apis';
 import { useEffect } from 'react';
 import CSkeleton from '@/custom_antd/CSkeleton';
+import { getDoctorState } from '@/redux/reducers/doctorReducer';
+import { doctorsThunk } from '@/redux/thunks/doctorThunk';
 
 export default function SwiperDoctor() {
     const router = useRouter();
     const dispatch = useAppDispatch();
-    const doctor = useAppSelector((state) => state.doctor);
+    const doctor = useAppSelector(getDoctorState);
 
     useEffect(() => {
         if(doctor.status === 'completed' || doctor.status === 'rejected') {
-            dispatch(getDoctors());
+            dispatch(doctorsThunk());
         }
     }, [dispatch, doctor.status]);
 
@@ -55,8 +56,7 @@ export default function SwiperDoctor() {
                                     <CRow gutter={[16, 16]}>
                                         <CCol>
                                             <CButton type="default" size="middle" shape="round" onClick={() => {
-                                                dispatch(getDoctor(d.id || ''));
-                                                router.push('/doi-ngu-nha-si/chi-tiet')
+                                                router.push('/nha-si/'+d.id)
                                             }}>Xem chi tiết</CButton>
                                         </CCol>
                                         <CCol>

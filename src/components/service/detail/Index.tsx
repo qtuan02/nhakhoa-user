@@ -1,5 +1,4 @@
 "use client"
-import { getService } from "@/apis";
 import CBreadcrumb from "@/custom_antd/CBreadscrumb";
 import CSkeleton from "@/custom_antd/CSkeleton";
 import { IService } from "@/interfaces/IService";
@@ -7,6 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DetailService from "../components/DetailService";
+import { serviceApi } from "@/api/serviceApi";
 
 export default function SerivceDetailComponent() {
     const { id } = useParams();
@@ -15,7 +15,7 @@ export default function SerivceDetailComponent() {
 
     const getDataService = async (id : string) => {
         setLoading(true);
-        const value = await getService(id);
+        const value = await serviceApi.findOne(id);
         setData(value);
         setLoading(false);
     }

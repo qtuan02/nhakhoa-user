@@ -1,5 +1,4 @@
 
-import { getHotServices } from "@/apis";
 import CSkeleton from "@/custom_antd/CSkeleton";
 import CTitle from "@/custom_antd/CTitle";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -13,21 +12,23 @@ import CRow from "@/custom_antd/CRow";
 import CButton from "@/custom_antd/CButton";
 import { addService } from "@/redux/reducers/appoinmentReducer";
 import { useRouter } from 'next-nprogress-bar';
+import { getServiceState } from "@/redux/reducers/serviceReducer";
+import { serviceSpecialThunk } from "@/redux/thunks/serviceThunk";
 
 export default function SwiperServiceHome() {
     const router = useRouter();
     const dispatch = useAppDispatch();
-    const service = useAppSelector((state) => state.service);
+    const service = useAppSelector(getServiceState);
     useEffect(() => {
-        if (service.statusHot === 'completed' || service.statusHot === 'rejected') {
-            dispatch(getHotServices());
+        if (service.statusSpecial === 'completed' || service.statusSpecial === 'rejected') {
+            dispatch(serviceSpecialThunk());
         }
-    }, [service.statusHot, dispatch]);
+    }, [dispatch, service.statusSpecial]);
 
     return (
         <>
             <CTitle className="!text-center">Dịch vụ được yêu thích</CTitle>
-            <CSkeleton loading={service.loadingHot}>
+            <CSkeleton loading={service.loadingSpecial}>
                 <Swiper
                     className="p-5"
                     modules={[Virtual, Navigation]}
@@ -35,7 +36,7 @@ export default function SwiperServiceHome() {
                     spaceBetween={30}
                     navigation={true}
                 >
-                    {service?.dataHot?.map((s, index) => (
+                    {service?.dataSpecial?.map((s, index) => (
                         <SwiperSlide key={index}>
                             <CCard image={s.image} styleImage={{ height: 200 }} onClick={() => router.push("/dich-vu/"+s.id)}>
                                 <div className="h-28">
@@ -57,7 +58,7 @@ export default function SwiperServiceHome() {
                                 </div>
                             </CCard>
                         </SwiperSlide>
-                    ))}
+                    )) || []}
                 </Swiper>
             </CSkeleton>
         </>

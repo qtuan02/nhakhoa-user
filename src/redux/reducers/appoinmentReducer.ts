@@ -1,29 +1,25 @@
+import { IService } from "@/interfaces/IService";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TOAST_ERROR, TOAST_SUCCESS, TOAST_WARNING } from "@/utils/FunctionUiHelpers";
-import { IService } from "@/interfaces/IService";
-import { createAppoinment } from "@/apis";
+import { appointmentCreateThunk } from "../thunks/appointmentThunk";
+import { RootState } from "../store";
 
 interface IAppoinmentState {
-    modal: boolean;
     loading: boolean;
     services?: IService[];
     doctor_id?: string;
 };
 
 const initialState: IAppoinmentState = {
-    modal: false,
     loading: false,
     services: [],
-    doctor_id: ''
+    doctor_id: '',
 };
 
 const appoinmentSlice = createSlice({
     name: 'appoinment',
     initialState,
     reducers: {
-        toggleModal: (state) => {
-            state.modal = !state.modal;
-        },
         addService: (state, action: PayloadAction<IService>) => {
             const service = action.payload;
             if(state?.services?.find(s => s.id === service.id)) {
@@ -47,21 +43,20 @@ const appoinmentSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(createAppoinment.pending, (state) => {
+            .addCase(appointmentCreateThunk.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(createAppoinment.fulfilled, (state, action) => {
+            .addCase(appointmentCreateThunk.fulfilled, (state, action) => {
                 state.loading = false;
-                state.services = [];
                 TOAST_SUCCESS(action.payload.message);
             })
-            .addCase(createAppoinment.rejected, (state, action: any) => {
+            .addCase(appointmentCreateThunk.rejected, (state, action: any) => {
                 state.loading = false;
-                state.services = [];
-                TOAST_ERROR(action.error?.message)
+                TOAST_ERROR(action?.payload)
             })
     }
 });
 
-export const { toggleModal, addService, deleteService, setDoctorId } = appoinmentSlice.actions;
+export const getAppointmentState = (state: RootState) => state.appointment;
+export const { addService, deleteService, setDoctorId } = appoinmentSlice.actions;
 export default appoinmentSlice.reducer;

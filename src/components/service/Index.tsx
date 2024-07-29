@@ -1,8 +1,6 @@
 "use client";
-import { getServices } from "@/apis";
 import CCol from "@/custom_antd/CCol";
 import CRow from "@/custom_antd/CRow";
-import CSearch from "@/custom_antd/CSearch";
 import CSkeleton from "@/custom_antd/CSkeleton";
 import CTitle from "@/custom_antd/CTitle";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -13,15 +11,17 @@ import ListSerivce from "./components/ListService";
 import { CInput } from "@/custom_antd/CInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { getServiceState } from "@/redux/reducers/serviceReducer";
+import { servicesThunk } from "@/redux/thunks/serviceThunk";
 
 export default function SerivceComponent() {
     const dispatch = useAppDispatch();
     const [search, setSearch] = useState<string>("");
-    const service = useAppSelector((state) => state.service);
+    const service = useAppSelector(getServiceState);
 
     useEffect(() => {
         if(service.status === "completed" || service.status === "rejected"){
-            dispatch(getServices());
+            dispatch(servicesThunk());
         }
     }, [dispatch, service.status]);
 

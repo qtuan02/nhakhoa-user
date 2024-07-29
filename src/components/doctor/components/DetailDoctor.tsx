@@ -14,21 +14,15 @@ import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 
 interface DetailDoctorProps {
-    data?: IDoctor | null;
+    data?: IDoctor;
 }
 
 export default function DetailDoctor({ data }: DetailDoctorProps) {
     const router = useRouter();
     const dispatch = useAppDispatch();
-    const doctor = useAppSelector((state) => state.doctor);
 
-    useEffect(() => {
-        if (!doctor.doctor) {
-            router.push('/doi-ngu-nha-si')
-        }
-    }, [doctor.doctor, router]);
     return (
-        data ? <>
+        <>
             <CTitle className="!text-[#313b79]" level={2}>{data?.name}</CTitle>
             <br />
             <CRow>
@@ -55,7 +49,6 @@ export default function DetailDoctor({ data }: DetailDoctorProps) {
                     </Flex>
                 </CCol>
             </CRow>
-        </> :
-        <CSkeleton loading={true} />
+        </>
     );
 }

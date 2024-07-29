@@ -1,5 +1,4 @@
 "use client"
-import { getDate, getTime } from "@/apis";
 import CButton from "@/custom_antd/CButton";
 import CCol from "@/custom_antd/CCol";
 import CDatePicker from "@/custom_antd/CDatePicker";
@@ -8,20 +7,23 @@ import { CInput, CTextArea } from "@/custom_antd/CInput";
 import CRow from "@/custom_antd/CRow";
 import CSelect from "@/custom_antd/CSelect";
 import CTitle from "@/custom_antd/CTitle";
-import { IAppoinment, IDate, ITime } from "@/interfaces/IAppoinment";
 import { IDoctor } from "@/interfaces/IDoctor";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { deleteService, setDoctorId, toggleModal } from "@/redux/reducers/appoinmentReducer";
-import { setDate, setTime } from "@/redux/reducers/scheduleReducer";
+import { deleteService, getAppointmentState, setDoctorId } from "@/redux/reducers/appoinmentReducer";
 import { Avatar, Form, List, Select } from "antd";
 import ModalAppoiment from "./ModalAppoinment";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { IAppointment, IDate, ITime } from "@/interfaces/IAppointment";
+import { getTimeState } from "@/redux/reducers/timeReducer";
+import { getDoctorState } from "@/redux/reducers/doctorReducer";
+import { scheduleApi } from "@/api/scheduleApi";
+import { formatDate } from "@/utils/FunctionHelpers";
 
 interface FormComponentProps {
-    onSubmit: (values: IAppoinment) => void;
+    onSubmit: (values: IAppointment) => void;
 }
 
-const initialAppoinment: IAppoinment = {
+const initialAppoinment: IAppointment = {
     name: '',
     phone: '',
     email: '',
@@ -35,41 +37,61 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
     const [form] = Form.useForm();
 
     const dispatch = useAppDispatch();
-    const time = useAppSelector((state) => state.time);
-    const doctor = useAppSelector((state) => state.doctor);
-    const schedule = useAppSelector((state) => state.schedule);
-    const appoinment = useAppSelector((state) => state.appoinment);
+    const time = useAppSelector(getTimeState);
+    const doctor = useAppSelector(getDoctorState);
+    const appoinment = useAppSelector(getAppointmentState);
+
+    const [ modal, setModal ] = useState<boolean>(false);
+
+    const [ dataDate, setDataDate ] = useState<IDate[]>([]);
+    const [ loadingDate, setLoadingDate ] = useState<boolean>(false);
+
+    const [ dataTime, setDataTime ] = useState<ITime[]>([]);
+    const [ loadingTime, setLoadingTime ] = useState<boolean>(false);
+
+    const handleToggleModal = () => {
+        setModal(!modal);
+    }
 
     const handleDisabledDate = (current: any) => {
         return current && (current.valueOf() < Date.now() || current.day() === 0);
     };
 
-    const handleDoctorChange = (doctorId: string) => {
+    const getDataDateByDoctorId = async (doctor_id: string) => {
+        setLoadingDate(true);
+        const res = await scheduleApi.getDate(doctor_id);
+        setLoadingDate(false); 
+        setDataDate(res);
+    }
+
+    const getDataTimeByDoctorIdAndDate = async (doctor_id: string, date: string) => {
+        setLoadingTime(true);
+        const res = await scheduleApi.getTime(doctor_id, date);
+        setLoadingTime(false);
+        setDataTime(res);
+    }
+
+    const handleDoctorChange = async (doctorId: string) => {
         form.setFieldsValue({ date: '', time: '' });
-        dispatch(setDoctorId(doctorId));
-        if (doctorId) {
-            dispatch(getDate(doctorId));
-            dispatch(setTime());
-        } else {
-            dispatch(setDate());
+        if(doctorId){
+            dispatch(setDoctorId(doctorId));
+            getDataDateByDoctorId(doctorId);
+        }else{
+            setDataDate([]);
         }
     };
 
     const handleDateChange = (date: string) => {
         form.setFieldsValue({ time: '' });
-        if (date) {
-            dispatch(getTime({ doctor_id: appoinment.doctor_id as string, date: date }));
-        } else {
-            dispatch(setTime());
-        }
+        getDataTimeByDoctorIdAndDate(form.getFieldValue("doctor_id"), date);
     }
 
     useEffect(() => {
         if(appoinment.doctor_id){
             form.setFieldValue('doctor_id', appoinment.doctor_id);
-            dispatch(getDate(appoinment.doctor_id));
+            getDataDateByDoctorId(appoinment.doctor_id);
         }
-    }, [appoinment.doctor_id, dispatch, form])
+    }, [appoinment.doctor_id, form])
 
     return (
         <div className="w-[1000px] mx-auto p-12">
@@ -99,11 +121,11 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         </CFormItem>
                     </CCol>
                     <CCol xs={12}>
-                        {schedule?.date?.length === 0 ?
+                        {dataDate.length === 0 ?
                             <CRow gutter={12}>
                                 <CCol xs={12}>
                                     <CFormItem label="Ngày hẹn" name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
-                                        <CDatePicker disabledDate={handleDisabledDate} format='YYYY-MM-DD' className="h-10 w-full ts-16" placeholder="--Chọn ngày" />
+                                        <CDatePicker disabledDate={handleDisabledDate} format='DD/MM/YYYY' className="h-10 w-full ts-16" placeholder="--Chọn ngày" />
                                     </CFormItem>
                                 </CCol>
                                 <CCol xs={12}>
@@ -120,21 +142,21 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                             <CRow gutter={12}>
                                 <CCol xs={12}>
                                     <CFormItem label="Ngày hẹn" name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
-                                        <CSelect loading={schedule.loadingDate} className="!h-10 ts-16" onChange={handleDateChange}>
+                                        <CSelect loading={loadingDate} className="!h-10 ts-16" onChange={handleDateChange}>
                                             <Select.Option value="">--Chọn ngày</Select.Option>
-                                            {schedule?.date?.map((d: IDate) => (
-                                                <Select.Option key={d.date} value={d.date}>{d.date}</Select.Option>
-                                            ))}
+                                            {dataDate?.map((d: IDate) => (
+                                                <Select.Option key={d.date} value={d.date}>{formatDate(d.date)}</Select.Option>
+                                            )) || []}
                                         </CSelect>
                                     </CFormItem>
                                 </CCol>
                                 <CCol xs={12}>
                                     <CFormItem label="Giờ hẹn" name="time" rules={[{ required: true, message: "Chưa chọn thời gian..." }]}>
-                                        <CSelect loading={schedule.loadingTime} className="!h-10 ts-16">
+                                        <CSelect loading={loadingTime} className="!h-10 ts-16">
                                             <Select.Option value="">--Chọn thời gian</Select.Option>
-                                            {schedule.time?.map((t: ITime) => (
+                                            {dataTime?.map((t: ITime) => (
                                                 <Select.Option key={t.time} value={t.time}>{t.time}</Select.Option>
-                                            ))}
+                                            )) || []}
                                         </CSelect>
                                     </CFormItem>
                                 </CCol>
@@ -147,11 +169,11 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         <div className="bg-[#e4e4e4] h-[150px] flex items-center justify-center text-center pb-2 rounded-md border-solid border-[1px] border-[#d9d9d9]">
                             <div>
                                 <p className="block py-2">Chưa có dịch vụ nào được chọn. Chọn dịch vụ (nếu có)!</p>
-                                <CButton type="primary" className="rounded-lg" onClick={() => dispatch(toggleModal())}>Chọn dịch vụ</CButton>
+                                <CButton type="primary" className="rounded-lg" onClick={() => handleToggleModal()}>Chọn dịch vụ</CButton>
                             </div>
                         </div> :
                         <div>
-                            <CButton type="primary" className="rounded-lg" onClick={() => dispatch(toggleModal())}>Chọn dịch vụ</CButton>
+                            <CButton type="primary" className="rounded-lg" onClick={() => handleToggleModal()}>Chọn dịch vụ</CButton>
                             <List
                                 itemLayout="horizontal"
                                 dataSource={appoinment.services}
@@ -167,7 +189,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                             />
                         </div>
                     }
-                    <ModalAppoiment />
+                    <ModalAppoiment modal={modal} toggle={handleToggleModal} />
                 </CFormItem>
                 <CFormItem label="Ghi chú" name="note">
                     <CTextArea

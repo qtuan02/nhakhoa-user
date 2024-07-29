@@ -1,27 +1,31 @@
-import { getServices } from "@/apis/serviceApi";
 import CButton from "@/custom_antd/CButton";
 import CModal from "@/custom_antd/CModal";
 import CSkeleton from "@/custom_antd/CSkeleton";
 import { IService } from "@/interfaces/IService";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addService, toggleModal } from "@/redux/reducers/appoinmentReducer";
+import { addService } from "@/redux/reducers/appoinmentReducer";
 import { Flex, Image, TableColumnsType } from "antd";
 import { useEffect, useState } from "react";
-import { getColumnSearchProps } from "@/utils/FunctionUiHelpers";
 import CTable from "@/custom_antd/CTable";
 import { customNumberPrice, removeVietnameseTones } from "@/utils/FunctionHelpers";
 import CSearch from "@/custom_antd/CSearch";
 import CTitle from "@/custom_antd/CTitle";
+import { getServiceState } from "@/redux/reducers/serviceReducer";
+import { servicesThunk } from "@/redux/thunks/serviceThunk";
 
-export default function ModalAppoiment() {
+interface IModalAppointmentProps {
+    modal: boolean;
+    toggle: () => void;
+}
+
+export default function ModalAppoiment({ modal, toggle }: IModalAppointmentProps) {
     const dispatch = useAppDispatch();
     const [search, setSearch] = useState<string>("");
-    const service = useAppSelector((state) => state.service);
-    const isOpenModal = useAppSelector((state) => state.appoinment.modal);
+    const service = useAppSelector(getServiceState);
 
     useEffect(() => {
         if (service.status === "completed" || service.status === "rejected") {
-            dispatch(getServices());
+            dispatch(servicesThunk());
         }
     }, [dispatch, service.status]);
 
@@ -72,11 +76,10 @@ export default function ModalAppoiment() {
     ] as TableColumnsType<IService>;
 
     return (
-        <CModal title={<Flex align="center" justify="space-between" className="w-[calc(100%-50px)]">
+        <CModal open={modal} onCancel={() => toggle()} title={<Flex align="center" justify="space-between" className="w-[calc(100%-50px)]">
             <CTitle level={4}>Bảng dịch vụ</CTitle>
             <CSearch className="!w-[200px]" size="middle" placeholder="Tìm dịch vụ..." onSearch={onSearch} enterButton />
-        </Flex>}
-        open={isOpenModal} onCancel={() => dispatch(toggleModal())} footer={null} width={800}>
+        </Flex>} footer={null} width={800}>
             <CSkeleton loading={service.loading}>
                 <CTable
                     columns={columns}

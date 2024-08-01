@@ -121,7 +121,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         </CFormItem>
                     </CCol>
                     <CCol xs={12}>
-                        {dataDate.length === 0 ?
+                        {dataDate && dataDate.length === 0 ?
                             <CRow gutter={12}>
                                 <CCol xs={12}>
                                     <CFormItem label="Ngày hẹn" name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>

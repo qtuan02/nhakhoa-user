@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @import url('./antd.css');
-@import url('./custom.css');
 @import url('./swiper.css');
 
 

@@ -34,7 +34,7 @@ export default function SwiperHome() {
                 <Image src="https://nhakhoaparkway.com/wp-content/uploads/2024/07/Coverwebdesktop-snhat-PW-1.jpg" alt="..." preview={false} />
             </SwiperSlide>
             <SwiperSlide>
-                <Image src="https://nhakhoaparkway.com/wp-content/uploads/2024/03/banner-Web-desktop.jpg.webp" alt="..." preview={false} />
+                <Image src="https://nhakhoaparkway.com/wp-content/uploads/2024/04/z5377722108983_4899ea9ee12cffd52097dc20e75a3c02.jpg.webp" alt="..." preview={false} />
             </SwiperSlide>
         </Swiper>
     );

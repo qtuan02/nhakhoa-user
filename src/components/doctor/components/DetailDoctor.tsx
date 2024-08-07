@@ -6,7 +6,7 @@ import CTitle from "@/custom_antd/CTitle";
 import { IDoctor } from "@/interfaces/IDoctor";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setDoctorId } from "@/redux/reducers/appoinmentReducer";
-import { formatDate, parseHTML } from "@/utils/FunctionHelpers";
+import { formatDate, parseHTML } from "@/utils/FunctionUiHelpers";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider, Flex, Image } from "antd";

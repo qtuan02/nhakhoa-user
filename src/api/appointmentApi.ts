@@ -1,7 +1,9 @@
 import axiosClient from "@/commons/AxiosConfig";
 import { IAppointment } from "@/interfaces/IAppointment";
+import { getLanguage } from "@/utils/FunctionUiHelpers";
 
-const URL = "/v2/appointment";
+const language = getLanguage();
+const URL = language+"/appointment";
 
 export const appointmentApi = {
     create(body: IAppointment) {

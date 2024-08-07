@@ -7,7 +7,7 @@ import CTitle from "@/custom_antd/CTitle";
 import { ICategory } from "@/interfaces/ICategory";
 import { useAppDispatch } from "@/redux/hooks";
 import { addService } from "@/redux/reducers/appoinmentReducer";
-import { customNumberPrice } from "@/utils/FunctionHelpers";
+import { customNumberPrice } from "@/utils/FunctionUiHelpers";
 import { useRouter } from "next-nprogress-bar";
 
 interface DetailCategoryProps {

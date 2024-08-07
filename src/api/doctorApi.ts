@@ -1,7 +1,8 @@
 import axiosClient from "@/commons/AxiosConfig";
-import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
+import { getLanguage, TOAST_ERROR } from "@/utils/FunctionUiHelpers";
 
-const URL = "/v2/doctor";
+const language = getLanguage();
+const URL = language+"/doctor";
 
 export const doctorApi = {
     get() {

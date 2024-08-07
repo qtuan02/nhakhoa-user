@@ -8,7 +8,7 @@ import CTitle from "@/custom_antd/CTitle";
 import { IService } from "@/interfaces/IService";
 import { useAppDispatch } from "@/redux/hooks";
 import { addService } from "@/redux/reducers/appoinmentReducer";
-import { customNumberPrice, parseHTML } from "@/utils/FunctionHelpers";
+import { customNumberPrice, parseHTML } from "@/utils/FunctionUiHelpers";
 import { faCalendarDays, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Form, Image, Space } from "antd";

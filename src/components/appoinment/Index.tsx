@@ -2,7 +2,6 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import FormAppoiment from "./components/FormAppoinment";
 import { useEffect } from "react";
-import CSkeleton from "@/custom_antd/CSkeleton";
 import dayjs from 'dayjs';
 import { getAppointmentState } from "@/redux/reducers/appoinmentReducer";
 import { getDoctorState } from "@/redux/reducers/doctorReducer";

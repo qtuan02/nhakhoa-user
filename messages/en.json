@@ -1,0 +1,76 @@
+{
+  "HeaderMenu": {
+    "home": "Home",
+    "about": "About us",
+    "service": "Services",
+    "appointment": "Contact"
+  },
+  "HomePage": {
+    "category": "Comprehensive Oral Health Care",
+    "service": "Popular Dental Services",
+    "doctor": "Experienced Dental Team"
+  },
+  "FooterMenu": {
+    "name": "DENTAL OK-VIP",
+    "about": "About us",
+    "service": "Services",
+    "doctor": "Dentists",
+    "support": "Consulting support",
+    "phone": "Telephone",
+    "address": "Address",
+    "address_detail": "180 Cao Lo Street, Ward 4, District 8, Ho Chi Minh City",
+    "worktime": "Working hours",
+    "datebegin": "Monday",
+    "dateend": "Saturday"
+  },
+  "IntroducePage": {
+    "home":"Home",
+    "introduce": "About us",
+    "title1": "Introducing OK-VIP dental clinic",
+    "content1": "With you for life",
+    "des1": "OK-VIP Dentistry is a highly specialized dental system chain with a nationwide chain of clinics, achieving many achievements in orthodontics and implants, dedicated to the treatment philosophy of taking care of a healthy and beautiful smile from the root, prioritizing customer health.",
+    "title2": "Achievements",
+    "content2": "Blue diamond provider 2022 & 2023",
+    "des2": "Parkway Dental achieved Top 02 in Southeast Asia in terms of Invisalign clear braces, Top 01 in Vietnam in terms of total number of braces. As a strategic partner of the Straumann Group, it ranks No. 1 in the world in terms of market share and in terms of implant technology, consultation techniques and surgical guidance chutes.",
+    "title3": "Leading",
+    "content3": "the way in dental digitization",
+    "des3": "With nationwide coverage, a team of doctors who uphold integrity, dedication to the profession and dedication to customers, we are currently at the forefront of dental digitalization: scanning and storing digital medical records, making treatment protocols by video, etc support treatment planning with artificial intelligence AI and personalize treatment solutions using CAD/CAM (3D printer).",
+    "title4": "Philosophy",
+    "content4": "caring for a healthy, beautiful smile",
+    "des4": "With the goal of becoming a chain of dental clinics for every Vietnamese family, we aim to bring a new standard in dentistry to customers, so that everyone can master their oral health, spread a healthy smile from the root and preserve a healthy smile throughout their lives."
+  },
+  "AppointmentPage": {
+    "appointment": "Đặt lịch hẹn",
+    "name": "Họ và tên",
+    "putname": "Nhập tên của bạn",
+    "vname": "Chưa nhập họ tên...",
+    "phone": "Số điện thoại",
+    "putphone": "Nhập số điện thoại",
+    "vphone": "Chưa nhập số điện thoại...",
+    "doctor": "Nha sĩ",
+    "cdoctor": "--Không chọn nha sĩ",
+    "date": "Ngày hẹn",
+    "cdate": "--Chọn ngày",
+    "vdate": "Chưa chọn ngày...",
+    "time": "Giờ hẹn",
+    "ctime": "--Chọn thời gian",
+    "vtime": "Chưa chọn thời gian...",
+    "service": "Dịch vụ đặt hẹn",
+    "cservice": "Chọn dịch vụ",
+    "vservice": "Chưa có dịch vụ nào được chọn. Chọn dịch vụ(nếu có)!",
+    "note": "Ghi chú",
+    "cnote": "Thông tin thêm",
+    "submit": "Gửi thông tin"
+  },
+  "Common": {
+    "service": "Services",
+    "search": "Search services...",
+    "doctor": "Doctor",
+    "sold": "Sold",
+    "price": "Price",
+    "btn_detail": "Details",
+    "btn_choose": "Choose service",
+    "btn_view": "View details",
+    "btn_book": "Book appointment"
+  }
+}

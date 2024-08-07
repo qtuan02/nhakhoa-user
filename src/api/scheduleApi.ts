@@ -1,7 +1,8 @@
 import axiosClient from "@/commons/AxiosConfig";
-import { TOAST_ERROR } from "@/utils/FunctionUiHelpers";
+import { getLanguage, TOAST_ERROR } from "@/utils/FunctionUiHelpers";
 
-const URL = "/v2/schedule";
+const language = getLanguage();
+const URL = language+"/schedule";
 
 export const scheduleApi = {
     getDate: async (doctor_id: string) => {

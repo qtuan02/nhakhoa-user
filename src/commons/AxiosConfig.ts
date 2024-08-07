@@ -1,7 +1,6 @@
 import axios from "axios";
 import { appConfig } from "./AppConfig";
 
-
 const axiosClient = axios.create({
 	baseURL: appConfig.API_LOCAL,
 	headers: {

@@ -17,7 +17,8 @@ import { IAppointment, IDate, ITime } from "@/interfaces/IAppointment";
 import { getTimeState } from "@/redux/reducers/timeReducer";
 import { getDoctorState } from "@/redux/reducers/doctorReducer";
 import { scheduleApi } from "@/api/scheduleApi";
-import { formatDate } from "@/utils/FunctionHelpers";
+import { formatDate } from "@/utils/FunctionUiHelpers";
+import { useTranslations } from "next-intl";
 
 interface FormComponentProps {
     onSubmit: (values: IAppointment) => void;
@@ -35,6 +36,7 @@ const initialAppoinment: IAppointment = {
 }
 export default function FormAppoiment({ onSubmit }: FormComponentProps) {
     const [form] = Form.useForm();
+    const t = useTranslations("AppointmentPage");
 
     const dispatch = useAppDispatch();
     const time = useAppSelector(getTimeState);
@@ -95,23 +97,23 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
 
     return (
         <div className="w-[1000px] mx-auto p-12">
-            <CTitle level={2} className="text-center">Đặt lịch hẹn</CTitle>
+            <CTitle level={2} className="text-center">{t('appointment')}</CTitle>
             <CForm layout="vertical" className="!p-6" initialValues={{ ...initialAppoinment, services: appoinment.services }} form={form} onFinish={onSubmit}>
                 <CRow gutter={32}>
                     <CCol xs={12}>
-                        <CFormItem label="Họ và tên" name="name" rules={[{ required: true, message: "Chưa nhập họ tên..." }]}>
-                            <CInput placeholder="Nhập tên của bạn" className="h-10 p-2 ts-16" />
+                        <CFormItem label={t('name')} name="name" rules={[{ required: true, message: t('vname') as string }]}>
+                            <CInput placeholder={t('cname')} className="h-10 p-2 ts-16" />
                         </CFormItem>
                     </CCol>
                     <CCol xs={12}>
-                        <CFormItem label="Số điện thoại" name="phone" rules={[{ required: true, message: "Chưa nhập số điện thoại..." }]}>
+                        <CFormItem label={t('phone')} name="phone" rules={[{ required: true, message: "Chưa nhập số điện thoại..." }]}>
                             <CInput placeholder="Nhập số điện thoại" className="h-10 p-2 ts-16" />
                         </CFormItem>
                     </CCol>
                 </CRow>
                 <CRow gutter={32}>
                     <CCol xs={12}>
-                        <CFormItem label="Nha sĩ" name="doctor_id">
+                        <CFormItem label={t('doctor')} name="doctor_id">
                             <CSelect loading={doctor.loading} className="!h-10 ts-16" onChange={handleDoctorChange}>
                                 <Select.Option value="">--Không chọn nha sĩ</Select.Option>
                                 {doctor.data?.map((d: IDoctor) => (
@@ -124,12 +126,12 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         {dataDate && dataDate.length === 0 ?
                             <CRow gutter={12}>
                                 <CCol xs={12}>
-                                    <CFormItem label="Ngày hẹn" name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
+                                    <CFormItem label={t('date')} name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
                                         <CDatePicker disabledDate={handleDisabledDate} format='DD/MM/YYYY' className="h-10 w-full ts-16" placeholder="--Chọn ngày" />
                                     </CFormItem>
                                 </CCol>
                                 <CCol xs={12}>
-                                    <CFormItem label="Giờ hẹn" name="time" rules={[{ required: true, message: "Chưa chọn thời gian..." }]}>
+                                    <CFormItem label={t('time')} name="time" rules={[{ required: true, message: "Chưa chọn thời gian..." }]}>
                                         <CSelect loading={time.loading} className="!h-10 ts-16">
                                             <Select.Option value="">--Chọn thời gian</Select.Option>
                                             {time.data?.map((t: ITime) => (
@@ -141,7 +143,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                             </CRow> :
                             <CRow gutter={12}>
                                 <CCol xs={12}>
-                                    <CFormItem label="Ngày hẹn" name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
+                                    <CFormItem label={t('date')} name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
                                         <CSelect loading={loadingDate} className="!h-10 ts-16" onChange={handleDateChange}>
                                             <Select.Option value="">--Chọn ngày</Select.Option>
                                             {dataDate?.map((d: IDate) => (
@@ -151,7 +153,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                                     </CFormItem>
                                 </CCol>
                                 <CCol xs={12}>
-                                    <CFormItem label="Giờ hẹn" name="time" rules={[{ required: true, message: "Chưa chọn thời gian..." }]}>
+                                    <CFormItem label={t('time')} name="time" rules={[{ required: true, message: "Chưa chọn thời gian..." }]}>
                                         <CSelect loading={loadingTime} className="!h-10 ts-16">
                                             <Select.Option value="">--Chọn thời gian</Select.Option>
                                             {dataTime?.map((t: ITime) => (
@@ -164,7 +166,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         }
                     </CCol>
                 </CRow>
-                <CFormItem label="Dịch vụ đặt hẹn" name="services">
+                <CFormItem label={t('service')} name="services">
                     {appoinment?.services?.length === 0 ?
                         <div className="bg-[#e4e4e4] h-[150px] flex items-center justify-center text-center pb-2 rounded-md border-solid border-[1px] border-[#d9d9d9]">
                             <div>
@@ -191,7 +193,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                     }
                     <ModalAppoiment modal={modal} toggle={handleToggleModal} />
                 </CFormItem>
-                <CFormItem label="Ghi chú" name="note">
+                <CFormItem label={t('note')} name="note">
                     <CTextArea
                         showCount
                         maxLength={500}
@@ -202,7 +204,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                 </CFormItem>
                 <br />
                 <CFormItem className="text-center">
-                    <CButton type="primary" className="!rounded-3xl !px-14 !py-6 ts-20 !font-[500]" htmlType="submit">Gửi thông tin</CButton>
+                    <CButton type="primary" className="!rounded-3xl !px-14 !py-6 ts-20 !font-[500]" htmlType="submit">{t('submit')}</CButton>
                 </CFormItem>
             </CForm>
         </div>

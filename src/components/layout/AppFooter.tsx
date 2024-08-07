@@ -1,50 +1,52 @@
+"use client";
+import Link from "next/link";
 import CCol from "@/custom_antd/CCol";
 import CRow from "@/custom_antd/CRow";
+import { useTranslations } from "next-intl";
 import { Footer } from "antd/es/layout/layout";
-import Link from "next/link";
-
 
 export default function AppFooter() {
+    const t = useTranslations("FooterMenu");
     const items = [
         {
-            col: 4,
+            col: 3,
             offset: 1,
-            label: "NHA KHOA OK-VIP",
+            label: <p>{t('name')}</p>,
             children: [
                 {
-                    label: <Link href="/gioi-thieu" className="text-[#000]">Giới thiệu</Link>
+                    label: <Link href="/gioi-thieu" className="text-[#000]">{t('about')}</Link>
                 },
                 {
-                    label: <Link href="/dich-vu" className="text-[#000]">Dịch vụ</Link>
+                    label: <Link href="/dich-vu" className="text-[#000]">{t('service')}</Link>
                 },
                 {
-                    label: <Link href="/doi-ngu-nha-si" className="text-[#000]">Đội ngũ nha sĩ</Link>
+                    label: <Link href="#" className="text-[#000]">{t('doctor')}</Link>
                 }
             ],
         },
         {
             col: 6,
             offset: 0,
-            label: "Hỗ trợ tư vấn",
+            label: <p>{t('support')}</p>,
             children: [
                 {
                     label: <span>Email: <a href="mailto:contact@nhakhoaokvip.com" className="text-[#000]">contact@nhakhoaokvip.com</a></span>
                 },
                 {
-                    label: <span>Điện thoại: <a href="tel:0338230318" className="text-[#000]">033 8230 318</a> - <a href="tel:0393653862" className="text-[#000]">039 3653 862</a></span>
+                    label: <span>{t('phone')}: <a href="tel:0338230318" className="text-[#000]">033 8230 318</a> - <a href="tel:0393653862" className="text-[#000]">039 3653 862</a></span>
                 },
                 {
-                    label: <span>Địa chỉ: <a href="https://www.google.com/maps/place/180+%C4%90.+Cao+L%E1%BB%97,+Ph%C6%B0%E1%BB%9Dng+4,+Qu%E1%BA%ADn+8,+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7380234,106.6752848,17z/data=!3m1!4b1!4m6!3m5!1s0x31752fad0158a09f:0xfd0a6159277a3508!8m2!3d10.7380234!4d106.6778651!16s%2Fg%2F11csg1y8zp?entry=ttu" target="_blank" className="text-[#000]">180 Cao Lỗ, Phường 4, Quận 8, Thành phố Hồ Chí Minh</a></span>
+                    label: <span>{t('address')}: <a href="https://www.google.com/maps/place/180+%C4%90.+Cao+L%E1%BB%97,+Ph%C6%B0%E1%BB%9Dng+4,+Qu%E1%BA%ADn+8,+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7380234,106.6752848,17z/data=!3m1!4b1!4m6!3m5!1s0x31752fad0158a09f:0xfd0a6159277a3508!8m2!3d10.7380234!4d106.6778651!16s%2Fg%2F11csg1y8zp?entry=ttu" target="_blank" className="text-[#000]">{t('address_detail')}</a></span>
                 }
             ]
         },
         {
-            col: 2,
+            col: 3,
             offset: 0,
-            label: "Giờ làm việc",
+            label: <p>{t('worktime')}</p>,
             children: [
                 {
-                    label: <span className="font-bold border-b-[1px] pb-2">Thứ 2 - Thứ 7:</span> 
+                    label: <span className="font-bold border-b-[1px] pb-2">{t('datebegin')} - {t('dateend')}:</span> 
                 },
                 {
                     label: "08:00 - 12:00"

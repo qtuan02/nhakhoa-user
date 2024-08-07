@@ -1,0 +1,76 @@
+{
+  "HeaderMenu": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "service": "Dịch vụ",
+    "appointment": "Đặt lịch"
+  },
+  "HomePage": {
+    "category": "Chăm sóc sức khỏe răng miệng toàn diện",
+    "service": "Dịch vụ được yêu thích",
+    "doctor": "Đội ngũ bác sĩ giàu kinh nghiệm"
+  },
+  "FooterMenu": {
+    "name": "NHA KHOA OK-VIP",
+    "about": "Giới thiệu",
+    "service": "Dịch vụ",
+    "doctor": "Đội ngũ nha sĩ",
+    "support": "Hỗ trợ tư vấn",
+    "phone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "address_detail": "180 Cao Lỗ, Phường 4, Quận 8, Thành phố Hồ Chí Minh",
+    "worktime": "Giờ làm việc",
+    "datebegin": "Thứ 2",
+    "dateend": "Thứ 7"
+  },
+  "IntroducePage": {
+    "home":"Trang chủ",
+    "introduce": "Giới thiệu",
+    "title1": "Giới thiệu nha khoa OK-VIP",
+    "content1": "Người bạn trọn đời",
+    "des1": "Nha khoa OK-VIP là chuỗi hệ thống nha khoa chuyên môn cao với chuỗi phòng khám toàn quốc, đạt nhiều thành tích về chỉnh nha và implant, tận tụy với triết lý điều trị chăm sóc nụ cười khỏe đẹp từ gốc, ưu tiên sức khoẻ khách hàng.",
+    "title2": "Đạt hạng",
+    "content2": "Blue Diamond Provider 2022 & 2023",
+    "des2": "Nha khoa Parkway đạt Top 02 Đông Nam Á về niềng răng trong suốt Invisalign, Top 01 Việt Nam về tổng số ca niềng răng. Là đối tác chiến lược của Straumann Group, đứng số 1 thế giới về thị phần và về công nghệ Implant, kỹ thuật hội chẩn và máng hướng dẫn phẫu thuật.",
+    "title3": "Đi đầu",
+    "content3": "về số hoá nha khoa",
+    "des3": "Với độ phủ rộng khắp toàn quốc, đội ngũ y bác sĩ đề cao tâm đức chính trực, tận tâm với nghề và tận tụy với khách hàng, chúng tôi hiện đang đi đầu trong việc số hóa về nha khoa: scan và lưu trữ thông tin bệnh án digital, lập phác đồ điều trị bằng video, hỗ trợ lên kế hoạch điều trị bằng trí thông minh nhân tạo AI và cá nhân hóa các giải pháp điều trị bằng CAD/CAM (máy in 3D).",
+    "title4": "Triết lý",
+    "content4": "chăm sóc nụ cười khỏe đẹp từ gốc",
+    "des4": "Với mục tiêu trở thành chuỗi phòng khám nha khoa của mọi gia đình Việt Nam, chúng tôi mong muốn mang đến tiêu chuẩn mới trong nha khoa đến với khách hàng, để mỗi người đều có thể làm chủ được sức khỏe răng miệng của mình, lan toả nụ cười khỏe đẹp từ gốc và bảo tồn nụ cười khỏe đẹp trong suốt cuộc đời."
+  },
+  "AppointmentPage": {
+    "appointment": "Đặt lịch hẹn",
+    "name": "Họ và tên",
+    "putname": "Nhập tên của bạn",
+    "vname": "Chưa nhập họ tên...",
+    "phone": "Số điện thoại",
+    "putphone": "Nhập số điện thoại",
+    "vphone": "Chưa nhập số điện thoại...",
+    "doctor": "Nha sĩ",
+    "cdoctor": "--Không chọn nha sĩ",
+    "date": "Ngày hẹn",
+    "cdate": "--Chọn ngày",
+    "vdate": "Chưa chọn ngày...",
+    "time": "Giờ hẹn",
+    "ctime": "--Chọn thời gian",
+    "vtime": "Chưa chọn thời gian...",
+    "service": "Dịch vụ đặt hẹn",
+    "cservice": "Chọn dịch vụ",
+    "vservice": "Chưa có dịch vụ nào được chọn. Chọn dịch vụ(nếu có)!",
+    "note": "Ghi chú",
+    "cnote": "Thông tin thêm",
+    "submit": "Gửi thông tin"
+  },
+  "Common": {
+    "service": "Dịch vụ",
+    "search": "Tìm dịch vụ...",
+    "doctor": "Bác sĩ",
+    "sold": "Đã bán",
+    "price": "Giá",
+    "btn_detail": "Chi tiết",
+    "btn_choose": "Chọn dịch vụ",
+    "btn_view": "Xem chi tiết",
+    "btn_book": "Đặt lịch hẹn"
+  }
+}

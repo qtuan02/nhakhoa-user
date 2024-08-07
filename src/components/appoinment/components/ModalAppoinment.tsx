@@ -7,7 +7,7 @@ import { addService } from "@/redux/reducers/appoinmentReducer";
 import { Flex, Image, TableColumnsType } from "antd";
 import { useEffect, useState } from "react";
 import CTable from "@/custom_antd/CTable";
-import { customNumberPrice, removeVietnameseTones } from "@/utils/FunctionHelpers";
+import { customNumberPrice, removeVietnameseTones } from "@/utils/FunctionUiHelpers";
 import CSearch from "@/custom_antd/CSearch";
 import CTitle from "@/custom_antd/CTitle";
 import { getServiceState } from "@/redux/reducers/serviceReducer";

@@ -106,8 +106,8 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         </CFormItem>
                     </CCol>
                     <CCol xs={12}>
-                        <CFormItem label={t('phone')} name="phone" rules={[{ required: true, message: "Chưa nhập số điện thoại..." }]}>
-                            <CInput placeholder="Nhập số điện thoại" className="h-10 p-2 ts-16" />
+                        <CFormItem label={t('phone')} name="phone" rules={[{ required: true, message: t('vphone') as string }]}>
+                            <CInput placeholder={t('putphone')} className="h-10 p-2 ts-16" />
                         </CFormItem>
                     </CCol>
                 </CRow>
@@ -115,7 +115,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                     <CCol xs={12}>
                         <CFormItem label={t('doctor')} name="doctor_id">
                             <CSelect loading={doctor.loading} className="!h-10 ts-16" onChange={handleDoctorChange}>
-                                <Select.Option value="">--Không chọn nha sĩ</Select.Option>
+                                <Select.Option value="">{t('cdoctor')}</Select.Option>
                                 {doctor.data?.map((d: IDoctor) => (
                                     <Select.Option key={d.id} value={d.id}>{d.name}</Select.Option>
                                 ))}
@@ -126,14 +126,14 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                         {dataDate && dataDate.length === 0 ?
                             <CRow gutter={12}>
                                 <CCol xs={12}>
-                                    <CFormItem label={t('date')} name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
-                                        <CDatePicker disabledDate={handleDisabledDate} format='DD/MM/YYYY' className="h-10 w-full ts-16" placeholder="--Chọn ngày" />
+                                    <CFormItem label={t('date')} name="date" rules={[{ required: true, message: t('vdate') as string }]}>
+                                        <CDatePicker disabledDate={handleDisabledDate} format='DD/MM/YYYY' className="h-10 w-full ts-16" placeholder={t('cdate')} />
                                     </CFormItem>
                                 </CCol>
                                 <CCol xs={12}>
-                                    <CFormItem label={t('time')} name="time" rules={[{ required: true, message: "Chưa chọn thời gian..." }]}>
+                                    <CFormItem label={t('time')} name="time" rules={[{ required: true, message: t('vtime') as string }]}>
                                         <CSelect loading={time.loading} className="!h-10 ts-16">
-                                            <Select.Option value="">--Chọn thời gian</Select.Option>
+                                            <Select.Option value="">{t('ctime')}</Select.Option>
                                             {time.data?.map((t: ITime) => (
                                                 <Select.Option key={t.time} value={t.time}>{t.time}</Select.Option>
                                             ))}
@@ -143,9 +143,9 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                             </CRow> :
                             <CRow gutter={12}>
                                 <CCol xs={12}>
-                                    <CFormItem label={t('date')} name="date" rules={[{ required: true, message: "Chưa chọn ngày..." }]}>
+                                    <CFormItem label={t('date')} name="date" rules={[{ required: true, message: t('vdate') as string }]}>
                                         <CSelect loading={loadingDate} className="!h-10 ts-16" onChange={handleDateChange}>
-                                            <Select.Option value="">--Chọn ngày</Select.Option>
+                                            <Select.Option value="">{t('cdate')}</Select.Option>
                                             {dataDate?.map((d: IDate) => (
                                                 <Select.Option key={d.date} value={d.date}>{formatDate(d.date)}</Select.Option>
                                             )) || []}
@@ -153,9 +153,9 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                                     </CFormItem>
                                 </CCol>
                                 <CCol xs={12}>
-                                    <CFormItem label={t('time')} name="time" rules={[{ required: true, message: "Chưa chọn thời gian..." }]}>
+                                    <CFormItem label={t('time')} name="time" rules={[{ required: true, message: t('vtime') as string }]}>
                                         <CSelect loading={loadingTime} className="!h-10 ts-16">
-                                            <Select.Option value="">--Chọn thời gian</Select.Option>
+                                            <Select.Option value="">{t('ctime')}</Select.Option>
                                             {dataTime?.map((t: ITime) => (
                                                 <Select.Option key={t.time} value={t.time}>{t.time}</Select.Option>
                                             )) || []}
@@ -170,12 +170,12 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                     {appoinment?.services?.length === 0 ?
                         <div className="bg-[#e4e4e4] h-[150px] flex items-center justify-center text-center pb-2 rounded-md border-solid border-[1px] border-[#d9d9d9]">
                             <div>
-                                <p className="block py-2">Chưa có dịch vụ nào được chọn. Chọn dịch vụ (nếu có)!</p>
-                                <CButton type="primary" className="rounded-lg" onClick={() => handleToggleModal()}>Chọn dịch vụ</CButton>
+                                <p className="block py-2">{t('vservice')}</p>
+                                <CButton type="primary" className="rounded-lg" onClick={() => handleToggleModal()}>{t('service')}</CButton>
                             </div>
                         </div> :
                         <div>
-                            <CButton type="primary" className="rounded-lg" onClick={() => handleToggleModal()}>Chọn dịch vụ</CButton>
+                            <CButton type="primary" className="rounded-lg" onClick={() => handleToggleModal()}>{t('cservice')}</CButton>
                             <List
                                 itemLayout="horizontal"
                                 dataSource={appoinment.services}
@@ -197,7 +197,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                     <CTextArea
                         showCount
                         maxLength={500}
-                        placeholder="Thông tin thêm"
+                        placeholder={t('cnote')}
                         className="ts-16"
                         style={{ height: 150, resize: 'none' }}
                     />

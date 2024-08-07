@@ -107,7 +107,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                     </CCol>
                     <CCol xs={12}>
                         <CFormItem label={t('phone')} name="phone" rules={[{ required: true, message: t('vphone') as string }]}>
-                            <CInput placeholder={t('putphone')} className="h-10 p-2 ts-16" />
+                            <CInput placeholder={t('cphone')} className="h-10 p-2 ts-16" />
                         </CFormItem>
                     </CCol>
                 </CRow>
@@ -183,7 +183,7 @@ export default function FormAppoiment({ onSubmit }: FormComponentProps) {
                                     <List.Item>
                                         <List.Item.Meta
                                             avatar={<Avatar shape="square" size="large" src={item?.image} />}
-                                            title={<CRow justify="space-between">{item?.name}<CButton type="primary" danger size="small" onClick={() => dispatch(deleteService(item?.id || -1))}>Xóa</CButton></CRow> }
+                                            title={<CRow justify="space-between">{item?.name}<CButton type="primary" danger size="small" onClick={() => dispatch(deleteService(item?.id || -1))}>{t('del')}</CButton></CRow> }
                                             description={new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(item?.min_price))+"/"+item?.unit}
                                         />
                                     </List.Item>

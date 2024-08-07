@@ -42,10 +42,10 @@
   "AppointmentPage": {
     "appointment": "Appointment",
     "name": "Full name",
-    "putname": "Enter full name",
+    "cname": "Enter full name",
     "vname": "Enter full name...",
     "phone": "Telephone",
-    "putphone": "Enter phone number",
+    "cphone": "Enter phone number",
     "vphone": "Enter phone number...",
     "doctor": "Doctor",
     "cdoctor": "--Don't a Doctor",
@@ -60,9 +60,33 @@
     "vservice": "No services have been selected. Please choose a service (if available)!",
     "note": "Notes",
     "cnote": "Enter note...",
-    "submit": "Provide information"
+    "submit": "Submit",
+    "del": "Delete"
+  },
+  "Table": {
+    "search": "Search services...",
+    "title": "Services",
+    "image": "Image",
+    "name": "Name",
+    "price": "Price",
+    "unit": "Unit",
+    "action": "Action",
+    "choose": "Choose"
+  },
+  "DetailDoctor": {
+    "home": "Home",
+    "doctor": "Doctor",
+    "title": "Information",
+    "fullname": "Fullname",
+    "sex": "Gender",
+    "date": "Date of birth",
+    "other": "Other",
+    "btn": "Book appointment"
   },
   "Common": {
+    "t_home": "Home",
+    "t_category": "Category",
+    "t_service": "Service",
     "service": "Services",
     "search": "Search services...",
     "doctor": "Doctor",
@@ -71,6 +95,13 @@
     "btn_detail": "Details",
     "btn_choose": "Choose service",
     "btn_view": "View details",
-    "btn_book": "Book appointment"
+    "btn_book": "Book appointment",
+    "btn_now": "Contact now",
+    "f_title": "Leave your phone number for a free consultation",
+    "f_name": "Fullname",
+    "f_cname": "Enter fullname",
+    "f_phone": "Contact number",
+    "f_cphone": "Enter contact number",
+    "f_call": "Call us"
   }
 }

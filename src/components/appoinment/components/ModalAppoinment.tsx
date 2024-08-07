@@ -12,6 +12,7 @@ import CSearch from "@/custom_antd/CSearch";
 import CTitle from "@/custom_antd/CTitle";
 import { getServiceState } from "@/redux/reducers/serviceReducer";
 import { servicesThunk } from "@/redux/thunks/serviceThunk";
+import { useTranslations } from "next-intl";
 
 interface IModalAppointmentProps {
     modal: boolean;
@@ -22,6 +23,8 @@ export default function ModalAppoiment({ modal, toggle }: IModalAppointmentProps
     const dispatch = useAppDispatch();
     const [search, setSearch] = useState<string>("");
     const service = useAppSelector(getServiceState);
+
+    const t = useTranslations("Table");
 
     useEffect(() => {
         if (service.status === "completed" || service.status === "rejected") {
@@ -45,7 +48,7 @@ export default function ModalAppoiment({ modal, toggle }: IModalAppointmentProps
             key: "index",
         },
         {
-            title: "Ảnh",
+            title: t('image'),
             dataIndex: "image",
             key: "image",
             width: 100,
@@ -54,13 +57,13 @@ export default function ModalAppoiment({ modal, toggle }: IModalAppointmentProps
             )
         },
         {
-            title: "Tên",
+            title: t('name'),
             dataIndex: "name",
             key: "name",
             width: 250,
         },
         {
-            title: "Giá/Đơn vị",
+            title: t('price')+"/"+t('unit'),
             dataIndex: "min_price",
             key: "min_price",
             width: 150,
@@ -68,17 +71,17 @@ export default function ModalAppoiment({ modal, toggle }: IModalAppointmentProps
             render: (min_price, item) => <span>{customNumberPrice(min_price) + "/" + item.unit}</span>
         },
         {
-            title: "Thao tác",
+            title: t('action'),
             key: "item",
             width: 100,
-            render: (item) => <CButton type="primary" size="small" onClick={() => dispatch(addService(item))}>Chọn</CButton>
+            render: (item) => <CButton type="primary" size="small" onClick={() => dispatch(addService(item))}>{t('btn')}</CButton>
         }
     ] as TableColumnsType<IService>;
 
     return (
         <CModal open={modal} onCancel={() => toggle()} title={<Flex align="center" justify="space-between" className="w-[calc(100%-50px)]">
-            <CTitle level={4}>Bảng dịch vụ</CTitle>
-            <CSearch className="!w-[200px]" size="middle" placeholder="Tìm dịch vụ..." onSearch={onSearch} enterButton />
+            <CTitle level={4}>{t('title')}</CTitle>
+            <CSearch className="!w-[200px]" size="middle" placeholder={t('search')} onSearch={onSearch} enterButton />
         </Flex>} footer={null} width={800}>
             <CSkeleton loading={service.loading}>
                 <CTable

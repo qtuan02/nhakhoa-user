@@ -42,10 +42,10 @@
   "AppointmentPage": {
     "appointment": "Đặt lịch hẹn",
     "name": "Họ và tên",
-    "putname": "Nhập tên của bạn",
+    "cname": "Nhập tên của bạn",
     "vname": "Chưa nhập họ tên...",
     "phone": "Số điện thoại",
-    "putphone": "Nhập số điện thoại",
+    "cphone": "Nhập số điện thoại",
     "vphone": "Chưa nhập số điện thoại...",
     "doctor": "Nha sĩ",
     "cdoctor": "--Không chọn nha sĩ",
@@ -60,9 +60,33 @@
     "vservice": "Chưa có dịch vụ nào được chọn. Chọn dịch vụ(nếu có)!",
     "note": "Ghi chú",
     "cnote": "Thông tin thêm",
-    "submit": "Gửi thông tin"
+    "submit": "Gửi thông tin",
+    "del": "Xóa"
+  },
+  "Table": {
+    "search": "Tìm dịch vụ...",
+    "title": "Bảng dịch vụ",
+    "image": "Ảnh",
+    "name": "Tên",
+    "price": "Giá",
+    "unit": "Đơn vị",
+    "action": "Thao tác",
+    "choose": "Chọn"
+  },
+  "DetailDoctor": {
+    "home": "Trang chủ",
+    "doctor": "Bác sĩ",
+    "title": "Thông tin bác sĩ",
+    "fullname": "Họ và tên",
+    "sex": "Giới tính",
+    "date": "Ngày sinh",
+    "other": "Thông tin khác",
+    "btn": "Đặt lịch hẹn"
   },
   "Common": {
+    "t_home": "Trang chủ",
+    "t_category": "Danh mục",
+    "t_service": "Dịch vụ",
     "service": "Dịch vụ",
     "search": "Tìm dịch vụ...",
     "doctor": "Bác sĩ",
@@ -71,6 +95,13 @@
     "btn_detail": "Chi tiết",
     "btn_choose": "Chọn dịch vụ",
     "btn_view": "Xem chi tiết",
-    "btn_book": "Đặt lịch hẹn"
+    "btn_book": "Đặt lịch hẹn",
+    "btn_now": "Đặt lịch ngay",
+    "f_title": "Để lại số điện thoại để được tư vấn miễn phí",
+    "f_name": "Họ và tên",
+    "f_cname": "Nhập tên của bạn",
+    "f_phone": "Số điện thoại",
+    "f_cphone": "Nhập số điện thoại",
+    "f_call": "Gọi cho tôi"
   }
 }

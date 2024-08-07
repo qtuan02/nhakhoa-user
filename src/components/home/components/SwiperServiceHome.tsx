@@ -41,7 +41,7 @@ export default function SwiperServiceHome() {
                 {service?.dataSpecial?.map((s: IService, index: number) => (
                     <SwiperSlide key={index}>
                         <CCard image={s.image} styleImage={{ height: 200 }} onClick={() => router.push("/dich-vu/" + s.id)}>
-                            <div className="h-28">
+                            <div className="h-32">
                                 <CTitle level={4}>{s.name}</CTitle>
                                 <CRow justify={"space-between"} align="bottom">
                                     <CDescriptionItem title={t('price')} content={customNumberPrice(s.min_price) + "/" + s.unit} />

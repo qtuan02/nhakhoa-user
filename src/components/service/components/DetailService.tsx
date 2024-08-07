@@ -12,6 +12,7 @@ import { customNumberPrice, parseHTML } from "@/utils/FunctionUiHelpers";
 import { faCalendarDays, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Form, Image, Space } from "antd";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next-nprogress-bar";
 
 
@@ -24,6 +25,8 @@ export default function DetailService({ data }: DetailServiceProps) {
     const [form] = Form.useForm();
     const dispatch = useAppDispatch();
 
+    const t = useTranslations("Common");
+
     return (
         data ?
             <>
@@ -34,30 +37,30 @@ export default function DetailService({ data }: DetailServiceProps) {
                     </CCol>
                     <CCol span={8}>
                         <CSpace className="w-full">
-                            <p className="ts-18 font-[500]">Giá:</p>
+                            <p className="ts-18 font-[500]">{t('price')}:</p>
                             <p className="ts-16">{customNumberPrice(data?.min_price) + " - " + customNumberPrice(data?.max_price) + " / "}<span className="opacity-70">{"(" + data?.unit + ")"}</span></p>
                         </CSpace>
                         <br />
                         <CSpace className="w-full">
-                            <p className="ts-18 font-[500]">Danh mục: </p>
+                            <p className="ts-18 font-[500]">{t('t_category')}: </p>
                             <span className="ts-16">{data?.category?.name}</span>
                         </CSpace>
                         <Space className="w-full mt-4">
                             <CButton type="primary" size="large" shape="round" onClick={() => {
                                 dispatch(addService(data))
                                 router.push("/dat-lich")
-                            }} icon={<FontAwesomeIcon icon={faCalendarDays} />}>Đặt lịch ngay</CButton>
+                            }} icon={<FontAwesomeIcon icon={faCalendarDays} />}>{t('btn_now')}</CButton>
                         </Space>
                         <CForm form={form} layout="vertical" className="border-solid border-[1px] py-5 px-10 mt-10 rounded-2xl bg-[#f5f5f5] shadow-sm">
-                            <CTitle level={3}>Để lại số điện thoại để được tư vấn miễn phí</CTitle>
-                            <Form.Item name="name" label="Họ và tên:" rules={[{ required: true }]}>
-                                <CInput className="h-[45px] rounded-2xl" placeholder="Nhập tên của bạn" />
+                            <CTitle level={3}>{t('f_title')}</CTitle>
+                            <Form.Item name="name" label={t('f_name')+":"} rules={[{ required: true }]}>
+                                <CInput className="h-[45px] rounded-2xl" placeholder={t('f_cname')} />
                             </Form.Item>
-                            <Form.Item name="phone" label="Số điện thoại:" rules={[{ required: true }]}>
-                                <CInput className="h-[45px] rounded-2xl" placeholder="Nhập số điện thoại" />
+                            <Form.Item name="phone" label={t('f_phone')+":"} rules={[{ required: true }]}>
+                                <CInput className="h-[45px] rounded-2xl" placeholder={t('f_cphone')} />
                             </Form.Item>
                             <CRow justify={"center"}>
-                                <CButton danger type="primary" htmlType="submit" size="large" shape="round" icon={<FontAwesomeIcon icon={faPhone} />}>Gọi cho tôi</CButton>
+                                <CButton danger type="primary" htmlType="submit" size="large" shape="round" icon={<FontAwesomeIcon icon={faPhone} />}>{t('f_call')}</CButton>
                             </CRow>
                         </CForm>
                     </CCol>

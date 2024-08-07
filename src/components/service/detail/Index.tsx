@@ -7,11 +7,14 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DetailService from "../components/DetailService";
 import { serviceApi } from "@/api/serviceApi";
+import { useTranslations } from "next-intl";
 
 export default function SerivceDetailComponent() {
     const { id } = useParams();
     const [loading, setLoading] = useState<boolean>(false);
     const [data, setData] = useState<IService | undefined>(undefined);
+
+    const t = useTranslations("Common")
 
     const getDataService = async (id : string) => {
         setLoading(true);
@@ -22,10 +25,10 @@ export default function SerivceDetailComponent() {
 
     const items = [
         {
-            title: <Link href="/trang-chu">Trang chủ</Link>
+            title: <Link href="/trang-chu">{t('t_home')}</Link>
         },
         {
-            title: <Link className="!text-blue-700 font-bold" href="#">Dịch vụ</Link>
+            title: <Link className="!text-blue-700 font-bold" href="#">{t('t_service')}</Link>
         }
     ];
 

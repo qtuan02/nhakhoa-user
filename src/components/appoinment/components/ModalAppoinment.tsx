@@ -74,7 +74,7 @@ export default function ModalAppoiment({ modal, toggle }: IModalAppointmentProps
             title: t('action'),
             key: "item",
             width: 100,
-            render: (item) => <CButton type="primary" size="small" onClick={() => dispatch(addService(item))}>{t('btn')}</CButton>
+            render: (item) => <CButton type="primary" size="small" onClick={() => dispatch(addService(item))}>{t('choose')}</CButton>
         }
     ] as TableColumnsType<IService>;
 
